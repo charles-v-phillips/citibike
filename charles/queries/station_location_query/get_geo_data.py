@@ -4,7 +4,6 @@ from geopy.geocoders import Nominatim, GoogleV3
 from geopy.point import Point
 from geopy.extra.rate_limiter import RateLimiter
 
-# geolocator = GoogleV3(api_key = 'AIzaSyAj2OSVSYmePAVBkdt26ucIws3_cW4vNkU')
 geolocator = Nominatim(user_agent = 'fuck_off')
 
 data = pd.read_csv('station_locations.csv')
