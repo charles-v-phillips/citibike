@@ -1,0 +1,8 @@
+
+Purpose : This query was to find hte first date the bike was used and the last recorded date it was used.
+This will tell us the timeframe in which te bike was active
+
+
+Query:
+SELECT bike_id, MAX(DATETIME(started_at)), MIN(DATETIME(started_at)) FROM `citi-bike-333915.citi_bike_data.old`
+GROUP BY bike_id 

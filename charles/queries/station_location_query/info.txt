@@ -1,0 +1,7 @@
+Purpose:
+Get the lat lon of each unique station id
+
+Query:
+SELECT start_station_id, MIN(start_lat) as lat, MIN(start_lon) as lon
+FROM `citi-bike-333915.citi_bike_data.old`
+GROUP BY start_station_id
