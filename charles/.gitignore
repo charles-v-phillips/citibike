@@ -2,4 +2,8 @@
 *.log
 
 # ignore data directory
-data/
+data/new
+data/old
+data/old_parqueted_files
+data/weather/*.csv
+data/weather/*.parquet
