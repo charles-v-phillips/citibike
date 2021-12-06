@@ -7,3 +7,4 @@ data/old
 data/old_parqueted_files
 data/weather/*.csv
 data/weather/*.parquet
+data/openbus

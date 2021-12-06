@@ -1,0 +1,14 @@
+Purpose:
+To determin the maximum downtime for each bike. We hoped to bea ble to tell whether or not a bike was being repaired/refurbished
+
+Query:
+
+SELECT bike_id, MAX(time_btw_rides) as max_lag from
+
+(SELECT bike_id, started_at, 
+cast(started_at as datetime) - lag(cast(started_at as datetime),1)
+over (partition by bike_id order by started_at) as time_btw_rides
+FROM `citi-bike-333915.citi_bike_data.old` ORDER BY bike_id, started_at)
+
+GROUP BY bike_id
+ORDER BY max_lag
