@@ -9,3 +9,4 @@ data/weather/*.csv
 data/weather/*.parquet
 data/openbus
 keys.py
+.DS_Store

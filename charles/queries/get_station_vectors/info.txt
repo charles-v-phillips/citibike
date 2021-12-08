@@ -1,0 +1,16 @@
+Purpose:
+	We would like to get the hourly availibility of bikes for each station and treat it as a vector in R^24 space. We will cluster these vectors together
+
+Query:
+SELECT *
+FROM    
+    (SELECT dock_name,
+            dock_id,
+            hour,   
+            avail_bikes_proportion 
+    FROM `citi-bike-333915.citi_bike_data.bike_availability_average_per_hour` LIMIT 1000
+    ) AS t1
+PIVOT(
+    AVG(avail_bikes_proportion)
+    FOR hour in (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23)
+)
