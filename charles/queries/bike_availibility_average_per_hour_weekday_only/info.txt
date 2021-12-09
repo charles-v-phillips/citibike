@@ -1,0 +1,13 @@
+Purpose:
+	We would like to get average hourly dock availibility for all the stations, but only consider the weekdays
+
+Query:
+
+SELECT dock_id, max(dock_name) as dock_name, hour, 
+      avg(avail_bikes) as avail_bikes, 
+      avg(avail_docks) as avail_docks, avg(tot_docks) as tot_docks,
+      avg(avail_bikes_proportion) as avail_bikes_proportion, 
+      avg(avail_docks_proportion) as avail_docks_proportion
+FROM `citi-bike-333915.citi_bike_data.weekday_dock_info_12_09`
+GROUP BY dock_id, hour
+ORDER BY dock_id, hour
