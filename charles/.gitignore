@@ -8,5 +8,6 @@ data/old_parqueted_files
 data/weather/*.csv
 data/weather/*.parquet
 data/openbus
+data/nyc_data_misc
 keys.py
 .DS_Store
