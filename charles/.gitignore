@@ -1,5 +1,7 @@
 # ignore all .log files
 *.log
+.DS_Store
+
 
 # ignore data directory
 data/new
@@ -8,5 +10,11 @@ data/old_parqueted_files
 data/weather/*.csv
 data/weather/*.parquet
 data/openbus
+data/data_for_tree_based_model
+
+#ignore my secrets
 keys.py
-.DS_Store
+
+#igonre other peoples eda
+eda/hugh
+
