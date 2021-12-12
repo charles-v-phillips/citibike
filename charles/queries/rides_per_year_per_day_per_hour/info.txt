@@ -1,0 +1,11 @@
+Purpose:
+	To investigate the number of rides per year, per hour, per day
+
+Query:
+SELECT year,day_of_week,hour_of_day, COUNT(*) as num_rides FROM
+    (SELECT *, 
+            EXTRACT(DAYOFWEEK FROM DATETIME(started_at)) as day_of_week,
+            EXTRACT (HOUR FROM DATETIME(started_at)) as hour_of_day ,
+            EXTRACT(YEAR FROM DATETIME(started_at)) as year
+    FROM `citi-bike-333915.citi_bike_data.old` )
+GROUP BY year,day_of_week, hour_of_day
