@@ -4,6 +4,7 @@
 
 
 # ignore data directory
+data/phantom*
 data/new
 data/old
 data/old_parqueted_files
