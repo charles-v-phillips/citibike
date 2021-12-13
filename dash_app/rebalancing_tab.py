@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import dash_deck
 import json
+from secrets import mapbox_key
 with open('./data/weekday_rebalancing.json', 'r') as js: # shape file for neighborhood boundaries, needed for population density plot
     weekday_rebalanced_plot = json.loads(js.read())
 
@@ -21,4 +22,4 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
                                     style={"width": "50vw", "height": "50vh","position": 'relative'},
                                     id='deck-gl',
                                     tooltip=TOOLTIP_TEXT,
-                                    mapboxKey='pk.eyJ1IjoiY3ZwMjh4IiwiYSI6ImNrd21jOXRveDBmangyb21ydzhjMDQzNDcifQ.93iwy3G-nQWrfowzsr_dWA')])
+                                    mapboxKey=mapbox_key)])
