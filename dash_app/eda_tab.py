@@ -90,6 +90,25 @@ rides_per_month.update_xaxes(nticks = 15, tickangle=45, ticks = 'outside', showg
 
 ## END RIDES BY MONTH AND YEAR GRAPHIC --------------------------------------
 
+## START NUMBER OF RIDES BY MINUTE
+
+rides_by_minute_data = pickle.load(open('./data/countofridesbyminutes.pkl', 'rb'))
+
+rides_by_minute = px.bar(rides_by_minute_data, 
+             x="durationinmin", 
+             y="count", 
+             title="Trip Duration Count",
+             labels = dict(count="Total Number of Rides", durationinmin="Minutes"))
+rides_by_minute.update_traces(marker_color='blue')
+for data in rides_by_minute.data:
+   data["width"] = 1.0 
+rides_by_minute.layout.plot_bgcolor = 'white'
+rides_by_minute.update_yaxes(nticks = 16, ticks = 'outside', showgrid = False)
+rides_by_minute.update_xaxes(nticks = 14, ticks = 'outside')
+
+
+## END NUMBER OF RIDES BY MINUTE
+
 eda_tab = dcc.Tab(label='EDA',
                   value='eda',
                   children = [
@@ -111,4 +130,6 @@ eda_tab = dcc.Tab(label='EDA',
                         dcc.Graph(id='rides_per_year',figure=rides_per_year),
 
                         dcc.Graph(id='rides_per_month',figure=rides_per_month),
+
+                        dcc.Graph(id='num_of_rides_by_minute', figure = rides_by_minute)
 ])
