@@ -12,6 +12,10 @@ data/weather/*.parquet
 data/openbus
 data/data_for_tree_based_model
 
+#ignore pickle 
+*.pickle
+data/phantom2.csv
+modeling/ML_table_with_availability_clusters.csv
 #ignore my secrets
 keys.py
 
