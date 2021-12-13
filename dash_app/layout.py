@@ -6,12 +6,8 @@ import rebalancing_tab as rebalancing_tab
 tabs = dcc.Tabs(id="tabs-example-graph", children=[eda_tab.eda_tab,rebalancing_tab.rebalancing_tab,about_us_tab.about_us_tab],value='eda')
 
 layout = html.Div([
-    html.H1('Citi-Bike'),
+    html.H1('CitiBike'),
     tabs,
     html.Div(id='tabs-content-example-graph'),
-    html.H1('WE FUCKING AROUND HERE'),
-    html.H1('WE FUCKING AROUND HERE'),
-    html.H1('WE FUCKING AROUND HERE'),
-    html.H1('WE FUCKING AROUND HERE')
 
 ])
