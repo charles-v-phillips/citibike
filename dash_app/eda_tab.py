@@ -19,6 +19,9 @@ pop_density =px.choropleth_mapbox(pop_data,
                           color = 'Population Density (per Sq. Mi.)',
                            center={"lat": 40.77, "lon": -73.79},
                           mapbox_style="carto-positron")
+pop_density.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+pop_density.layout.coloraxis.colorbar.title = ''
+# pop_density.update_traces(legendgrouptitle = dict(text = 'work?'))
 
 ## END POPULATION DENSITY GRAPHIC CHUNK ---------------------------
 
@@ -94,14 +97,14 @@ rides_per_month.update_xaxes(nticks = 15, tickangle=45, ticks = 'outside', showg
 
 rides_by_minute_data = pickle.load(open('./data/countofridesbyminutes.pkl', 'rb'))
 
-rides_by_minute = px.bar(rides_by_minute_data, 
-             x="durationinmin", 
-             y="count", 
+rides_by_minute = px.bar(rides_by_minute_data,
+             x="durationinmin",
+             y="count",
              title="Trip Duration Count",
              labels = dict(count="Total Number of Rides", durationinmin="Minutes"))
 rides_by_minute.update_traces(marker_color='blue')
 for data in rides_by_minute.data:
-   data["width"] = 1.0 
+   data["width"] = 1.0
 rides_by_minute.layout.plot_bgcolor = 'white'
 rides_by_minute.update_yaxes(nticks = 16, ticks = 'outside', showgrid = False)
 rides_by_minute.update_xaxes(nticks = 14, ticks = 'outside')
@@ -120,8 +123,20 @@ eda_tab = dcc.Tab(label='EDA',
                             value=1,
                         ),
                         dcc.Graph(id='rollout_map'),
+                        html.Div([
+   html.Div(dcc.Graph(id='pop_density' ,figure=pop_density,style = {'height' : '100%'}), style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
+   html.Div(children = [html.H2('Population Density in NYC'),'text'], style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})
 
-                        dcc.Graph(id='pop_density' ,figure=pop_density),
+],style = {'height' : '80vh'}),
+
+
+
+
+
+
+                        # dcc.Graph(id='pop_density' ,figure=pop_density),
+
+
 
                         dcc.Graph(id = 'transit_locations', figure = transit_locations),
 

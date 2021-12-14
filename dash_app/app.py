@@ -39,11 +39,12 @@ def update_plot(rollout):
                             color='rollout_cluster',
                             mapbox_style='carto-positron',
                             color_continuous_scale=['pink', 'red', 'orange', 'yellow', 'green', 'blue', 'purple', 'grey',
-                                                    'black'][:rollout+1],
+                                                    'black','white'][1:rollout+1],
+
                             zoom=10,
                             center=dict(lat=40.76421, lon=-73.95623)
                             )
-    map.update_layout(height=800)
+    # map.update_layout(height=800)
 
     return [map]
 
