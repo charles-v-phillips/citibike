@@ -125,9 +125,7 @@ eda_tab = dcc.Tab(label='EDA',
                         dcc.Graph(id='rollout_map'),
                         html.Div([
    html.Div(dcc.Graph(id='pop_density' ,figure=pop_density,style = {'height' : '100%'}), style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-   html.Div(children = [html.H2('Population Density in NYC'),'text'], style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})
-
-],style = {'height' : '80vh'}),
+   html.Div(children = [html.H2('Population Density in NYC'),'text'], style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],style = {'height' : '80vh'}),
 
 
 

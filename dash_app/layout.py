@@ -10,7 +10,7 @@ tabs = dcc.Tabs(id="tabs-example-graph", children=[eda_tab.eda_tab,rebalancing_t
 
 layout = html.Div([
     html.Img(id='citi_bike_logo',src = citi_bike_logo,
-                style = {"width": "50%",
+                style = {"width": "40%",
                         "height": "auto"}),
     tabs,
     html.Div(id='tabs-content-example-graph'),
