@@ -36,6 +36,7 @@ transit_locations = px.scatter_mapbox(dock_train_bus_df,
                   zoom = 10,
                   center = dict(lat = 40.76421, lon = -73.95623)
                  )
+transit_locations.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
 ## END PUBLIC TRANSIT LOCATION GRAPHIC -----------------------------------
 
@@ -115,34 +116,101 @@ rides_by_minute.update_xaxes(nticks = 14, ticks = 'outside')
 eda_tab = dcc.Tab(label='EDA',
                   value='eda',
                   children = [
-                    dcc.Slider(
-                            id='slider',
-                            marks={i: '{}'.format(i) for i in range(1, 10)},
-                            min=1,
-                            max=9,
-                            value=1,
-                        ),
-                        dcc.Graph(id='rollout_map'),
-                        html.Div([
-   html.Div(dcc.Graph(id='pop_density' ,figure=pop_density,style = {'height' : '100%'}), style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-   html.Div(children = [html.H2('Population Density in NYC'),'text'], style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],style = {'height' : '80vh'}),
+
+                  html.Div(children = [
+                                    #Rollout Map Div
+                                  html.Div(children = [dcc.Slider(
+                                          id='slider',
+                                          marks={i: '{}'.format(i) for i in range(1, 10)},
+                                          min=1,
+                                          max=9,
+                                          value=1
+                                      ),dcc.Graph(id='rollout_map',
+                                          style = {'height' : '100%'})],
+                                          style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
+                                  html.Div(children = [html.H2('CitiBike Rollout Plan'),'text'],
+                                                  style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
+                                                  style = {'height' : '80vh'}),
 
 
 
 
 
 
-                        # dcc.Graph(id='pop_density' ,figure=pop_density),
+                    # dcc.Slider(
+                    #         id='slider',
+                    #         marks={i: '{}'.format(i) for i in range(1, 10)},
+                    #         min=1,
+                    #         max=9,
+                    #         value=1,
+                    #     ),
+                        # dcc.Graph(id='rollout_map'),
+                        #
+                        #Pop Density Div
+                        html.Div(children = [
+                                        html.Div(dcc.Graph(id='pop_density' ,
+                                                figure=pop_density,
+                                                style = {'height' : '100%'}),
+                                                style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
+                                        html.Div(children = [html.H2('Population Density in NYC'),'text'],
+                                                        style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
+                                                        style = {'height' : '80vh','margin-top':'10px'}),
 
 
 
-                        dcc.Graph(id = 'transit_locations', figure = transit_locations),
 
-                        dcc.Graph(id='usage_pattern',figure=usage_trend_plot),
+                        #Transit Location Div
+                        html.Div(children = [
+                                        html.Div(dcc.Graph(id = 'transit_locations',
+                                                figure = transit_locations,
+                                                style = {'height' : '100%'}),
+                                                style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
+                                        html.Div(children = [html.H2('Transit Locations in NYC'),'text'],
+                                                        style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
+                                                        style = {'height' : '80vh','margin-top':'10px'}),
 
-                        dcc.Graph(id='rides_per_year',figure=rides_per_year),
 
-                        dcc.Graph(id='rides_per_month',figure=rides_per_month),
 
-                        dcc.Graph(id='num_of_rides_by_minute', figure = rides_by_minute)
+
+
+
+
+                        # Usage Pattern Div
+                        html.Div(children = [
+                                        html.Div(dcc.Graph(id='usage_pattern',
+                                                figure=usage_trend_plot,
+                                                style = {'height' : '100%'}),
+                                                style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
+                                        html.Div(children = [html.H2('CitiBike Usage Patters'),'text'],
+                                                        style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
+                                                        style = {'height' : '40vh','margin-top':'10px'}),
+
+
+                        # Rides per year Div
+                        html.Div(children = [
+                                        html.Div(dcc.Graph(id='rides_per_year',
+                                                figure=rides_per_year,
+                                                style = {'height' : '100%'}),
+                                                style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
+                                        html.Div(children = [html.H2('Annual Total Rides'),'text'],
+                                                        style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
+                                                        style = {'height' : '40vh','margin-top':'10px'}),
+
+                        #Rides per Month Div
+                        html.Div(children = [
+                                        html.Div(dcc.Graph(id='rides_per_month',figure=rides_per_month,
+                                                style = {'height' : '100%'}),
+                                                style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
+                                        html.Div(children = [html.H2('Rides Per Month'),'text'],
+                                                        style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
+                                                        style = {'height' : '40vh','margin-top':'10px'}),
+
+                        # Rides per minute Div
+                        html.Div(children = [
+                                        html.Div(dcc.Graph(id='num_of_rides_by_minute', figure = rides_by_minute,
+                                                style = {'height' : '100%'}),
+                                                style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
+                                        html.Div(children = [html.H2('Rides by Minute'),'text'],
+                                                        style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
+                                                        style = {'height' : '40vh','margin-top':'10px'}),
 ])

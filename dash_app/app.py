@@ -44,6 +44,7 @@ def update_plot(rollout):
                             zoom=10,
                             center=dict(lat=40.76421, lon=-73.95623)
                             )
+
     # map.update_layout(height=800)
 
     return [map]
