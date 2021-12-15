@@ -20,6 +20,13 @@ cluster4 = Image.open('./data/weekday_cluster_images/weekday_cluster_4.png')
 cluster5 = Image.open('./data/weekday_cluster_images/weekday_cluster_5.png')
 cluster6 = Image.open('./data/weekday_cluster_images/weekday_cluster_6.png')
 
+weekend_cluster0 = Image.open('./data/weekend_cluster_images/weekend_cluster_0.png')
+weekend_cluster1 = Image.open('./data/weekend_cluster_images/weekend_cluster_1.png')
+weekend_cluster2 = Image.open('./data/weekend_cluster_images/weekend_cluster_2.png')
+weekend_cluster3 = Image.open('./data/weekend_cluster_images/weekend_cluster_3.png')
+weekend_cluster4 = Image.open('./data/weekend_cluster_images/weekend_cluster_4.png')
+weekend_cluster5 = Image.open('./data/weekend_cluster_images/weekend_cluster_5.png')
+
 
 
 TOOLTIP_TEXT = {"html": "{count} bikes moved from {end_station}<br />\
@@ -49,21 +56,36 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
 
                                 html.Div(children = [html.H2('Weekend Rebalancing'),'text'],
                                          style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],style = {'height' : '45vh','margin-top':'10px'}),
-                          html.H1('Clustering Stations'),
-                          html.Div(children = [ html.Div(children = [html.Img(id = 'c1',src = cluster0,style = {"height": "30vh","width": "auto"}),
-                                                        html.Img(id = 'c2',src = cluster1,style = {"height": "30vh","width": "auto"}),
-                                                        html.Img(id = 'c3',src = cluster2,style = {"height": "30vh", "width": "auto"}),
-                                                        html.Img(id = 'c4',src = cluster3,style = {"height": "30vh", "width": "auto"}),
-                                                        html.Img(id = 'c5',src = cluster4,style = {"height": "30vh", "width": "auto"}),
-                                                        html.Img(id = 'c6',src = cluster5,style = {"height": "30vh", "width": "auto"}),
-                                                        html.Img(id = 'c7',src = cluster6,style = {"height": "30vh", "width": "auto"})],
-                                                    style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                                html.Div(children = [html.H1('DUMMY HEader'), 'dummy_text'],
-                                                         style={'width': '30%','margin-left' : '9%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
+                          html.H1('Weekday Cluster Stations',style = {'margin-top': '10px'}),
+                          html.Div(children = [ html.Div(children = [html.Img(id = 'c1',src = cluster0,style = {"height": "34vh","width": "auto"}),
+                                                                     html.Img(id = 'c2',src = cluster1,style = {"height": "34vh","width": "auto"}),
+                                                                     html.Img(id = 'c3',src = cluster2,style = {"height": "34vh", "width": "auto"}),
+                                                                     html.Img(id = 'c4',src = cluster3,style = {"height": "34vh", "width": "auto"}),
+                                                                     html.Img(id = 'c5',src = cluster4,style = {"height": "34vh", "width": "auto"}),
+                                                                     html.Img(id = 'c6',src = cluster5,style = {"height": "34vh", "width": "auto"}),
+                                                                     html.Img(id = 'c7',src = cluster6,style = {"height": "34vh", "width": "auto"})],
+                                                                style={'width': '70%','height' : '100%', 'display': 'inline-block'}),
+                                                html.Div(children = [
+                                                        html.H1('Weekday Clusters'), 'somemore dummy text'],
+                                                         style={'width': '25%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
+
+
+
+                                                ]),
+                          html.H1('Weekend Cluster Stations',style = {'margin-top': '10px'}),
+                          html.Div(children = [ html.Div(children = [html.Img(id = 'wkndc1',src = weekend_cluster0,style = {"height": "34vh","width": "auto"}),
+                                                                     html.Img(id = 'wkndc2',src = weekend_cluster1,style = {"height": "34vh","width": "auto"}),
+                                                                     html.Img(id = 'wkndc3',src = weekend_cluster2,style = {"height": "34vh", "width": "auto"}),
+                                                                     html.Img(id = 'wkndc4',src = weekend_cluster3,style = {"height": "34vh", "width": "auto"}),
+                                                                     html.Img(id = 'wkndc5',src = weekend_cluster4,style = {"height": "34vh", "width": "auto"}),
+                                                                     html.Img(id = 'wkndc6',src = weekend_cluster5,style = {"height": "34vh", "width": "auto"})],
+                                                                style={'width': '70%','height' : '100%', 'display': 'inline-block'}),
+                                                html.Div(children = [
+                                                        html.H1('DUMMY HEader'), 'dumdfjgvhdniughmy_text'],
+                                                         style={'width': '25%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
 
 
 
                                                 ])
-                                   ]
 
-                          )
+                            ])
