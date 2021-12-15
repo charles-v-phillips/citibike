@@ -9,13 +9,13 @@ robert_summary = 'Robert is an aspiring Data Scientist with a BS in Chemistry an
 hugh_photo = Image.open('./data/image/hugh.jpg')
 charles_photo = Image.open('./data/image/charles.jpg')
 jung_photo = Image.open('./data/image/jian_yang.jpg')
-robert_photo = Image.open('./data/image/bob.jpg')
+robert_photo = Image.open('./data/image/robert.jpg')
 
 about_us_tab = dcc.Tab(label = 'About Us',
                     value='about_us',
                     children = [
                     html.H2("Team Information"),
-                    html.H3("Hugh U Good?"),
+                    html.H3("Hugh"),
                     html.Img(id = 'hg_photo',
                         src = hugh_photo,
                         style = {'width': 300, 'height': 450}),
@@ -29,17 +29,17 @@ about_us_tab = dcc.Tab(label = 'About Us',
                     html.Div(charles_summary),
                     html.A("LinkedIn",
                         href = 'https://www.linkedin.com/in/charles-v-phillips/'),
-                    html.H3("Real ass Korean"),
+                    html.H3("Jungy"),
                     html.Img(id = 'jl_photo',
                         src = jung_photo,
                         style = {'width': 500, 'height': 300}),
                     html.Div(jung_summary),
                     html.A("LinkedIn",
                         href = 'https://www.linkedin.com/in/jung-lim-a9a348135/'),
-                    html.H3("Mr. Bob"),
+                    html.H3("Robert"),
                     html.Img(id = 'bob_photo',
                         src = robert_photo,
-                        style = {'width': 300, 'height': 400}),
+                        style = {'width': 300, 'height': 450}),
                     html.Div(robert_summary),
                     html.A("LinkedIn",
                         href = 'https://www.linkedin.com/in/robertsandberg1/'),
