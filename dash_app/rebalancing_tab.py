@@ -5,6 +5,7 @@ import numpy as np
 import dash_deck
 import json
 from PIL import Image
+import plotly.express as px
 from secrets import mapbox_key
 with open('./data/weekday_rebalancing.json', 'r') as js: # shape file for neighborhood boundaries, needed for population density plot
     weekday_rebalanced_plot = json.loads(js.read())
@@ -19,6 +20,35 @@ cluster3 = Image.open('./data/weekday_cluster_images/weekday_cluster_3.png')
 cluster4 = Image.open('./data/weekday_cluster_images/weekday_cluster_4.png')
 cluster5 = Image.open('./data/weekday_cluster_images/weekday_cluster_5.png')
 cluster6 = Image.open('./data/weekday_cluster_images/weekday_cluster_6.png')
+frame_for_weekday_cluster_map = pd.read_csv('./data/frame_for_weekday_cluster_map.csv')
+frame_for_weekday_cluster_map['cluster'] = frame_for_weekday_cluster_map['cluster'].astype(str)
+
+weekday_cluster_map = px.scatter_mapbox(  frame_for_weekday_cluster_map,
+                    lat = 'lat',
+                    lon = 'lon',
+                    color = 'cluster',
+                    mapbox_style = 'carto-positron',
+                    color_discrete_sequence=['rgba(204, 27, 14,1)','rgba(245,130,48,1)',
+                                                'rgba(0,0,128,1)','rgba(128,0,0,1)',
+                                            'rgba(60,180,75,1)','rgba(220,190,255,1)','rgba(128,128,128,1)' ],
+                    category_orders = {'cluster':['1','2','3','4','5','6','7']},
+                    zoom = 10,
+                    center = dict(lat = 40.76421, lon = -73.95623),
+
+
+                 )
+
+weekday_cluster_map.update_layout(
+
+                                  margin={"r":0,"t":0,"l":0,"b":0},
+                                  legend=dict(
+                                      yanchor="top",
+                                      xanchor = 'left',
+                                      y = 1.1,
+                                      x = 0,
+                                      orientation = 'h'
+                              ))
+
 
 weekend_cluster0 = Image.open('./data/weekend_cluster_images/weekend_cluster_0.png')
 weekend_cluster1 = Image.open('./data/weekend_cluster_images/weekend_cluster_1.png')
@@ -57,17 +87,18 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
                                 html.Div(children = [html.H2('Weekend Rebalancing'),'text'],
                                          style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],style = {'height' : '45vh','margin-top':'10px'}),
                           html.H1('Weekday Cluster Stations',style = {'margin-top': '10px'}),
-                          html.Div(children = [ html.Div(children = [html.Img(id = 'c1',src = cluster0,style = {"height": "34vh","width": "auto"}),
-                                                                     html.Img(id = 'c2',src = cluster1,style = {"height": "34vh","width": "auto"}),
-                                                                     html.Img(id = 'c3',src = cluster2,style = {"height": "34vh", "width": "auto"}),
-                                                                     html.Img(id = 'c4',src = cluster3,style = {"height": "34vh", "width": "auto"}),
-                                                                     html.Img(id = 'c5',src = cluster4,style = {"height": "34vh", "width": "auto"}),
-                                                                     html.Img(id = 'c6',src = cluster5,style = {"height": "34vh", "width": "auto"}),
-                                                                     html.Img(id = 'c7',src = cluster6,style = {"height": "34vh", "width": "auto"})],
-                                                                style={'width': '70%','height' : '100%', 'display': 'inline-block'}),
+                          html.Div(children = [ html.Div(children = [html.Img(id = 'c1',src = cluster0,style = {"height": "30vh","width": "auto"}),
+                                                                     html.Img(id = 'c2',src = cluster1,style = {"height": "30vh","width": "auto"}),
+                                                                     html.Img(id = 'c3',src = cluster2,style = {"height": "30vh", "width": "auto"}),
+                                                                     html.Img(id = 'c4',src = cluster3,style = {"height": "30vh", "width": "auto"}),
+                                                                     html.Img(id = 'c5',src = cluster4,style = {"height": "30vh", "width": "auto"}),
+                                                                     html.Img(id = 'c6',src = cluster5,style = {"height": "30vh", "width": "auto"}),
+                                                                     html.Img(id = 'c7',src = cluster6,style = {"height": "30vh", "width": "auto"})],
+                                                                style={'width': '55%','height' : '100%', 'display': 'inline-block'}),
                                                 html.Div(children = [
-                                                        html.H1('Weekday Clusters'), 'somemore dummy text'],
-                                                         style={'width': '25%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
+                                                        html.H1('Weekday Clusters'), 'somemore dummy text',dcc.Graph(id = 'weekday-cluster-graph',
+                                                                                                                    figure = weekday_cluster_map)],
+                                                         style={'width': '43%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
 
 
 
