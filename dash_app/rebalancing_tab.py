@@ -57,7 +57,8 @@ weekend_cluster3 = Image.open('./data/weekend_cluster_images/weekend_cluster_3.p
 weekend_cluster4 = Image.open('./data/weekend_cluster_images/weekend_cluster_4.png')
 weekend_cluster5 = Image.open('./data/weekend_cluster_images/weekend_cluster_5.png')
 
-
+rebalancing_times = Image.open('./data/robert/phantom_rides_time_of_day.png')
+rebalancing_distances = Image.open('./data/robert/phantom_rides_distances.png')
 
 TOOLTIP_TEXT = {"html": "{count} bikes moved from {end_station}<br />\
                 # to {next_station}Home of commuter in red; work location in green"}
@@ -117,6 +118,27 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
 
 
 
+                                                ]),
+               html.Div(children = [ html.Div(children = [html.Img(id = 'rebalancing_times', src = rebalancing_times, style = {"height": "68vh","width": "auto"})],
+                                                                style={'width': '70%','height' : '100%', 'display': 'inline-block'}),
+                                                html.Div(children = [
+                                                        html.H1('DUMMY HEader'), 'dumdfjgvhdniughmy_text'],
+                                                         style={'width': '25%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
+
+
+
+                                                ]),
+               html.Div(children = [ html.Div(children = [html.Img(id = 'rebalancing_distances', src = rebalancing_distances, style = {"height": "68vh","width": "auto"})],
+                                                                style={'width': '70%','height' : '100%', 'display': 'inline-block'}),
+                                                html.Div(children = [
+                                                        html.H1('DUMMY HEader'), 'dumdfjgvhdniughmy_text'],
+                                                         style={'width': '25%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
+
+
+
                                                 ])
 
-                            ])
+             ])
+                            
+
+
