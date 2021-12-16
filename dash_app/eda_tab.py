@@ -5,6 +5,7 @@ import json
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
+from eda_blurbs import rollout_clusters_blurb, pop_density_blurb, transit_location_blurb, usage_plot_blurb, ride_per_minute_blurb, rides_per_month_blurb, rides_per_year_blurb
 
 ## START POPULATION DENSITY GRAPHIC --------------------------
 pop_data = pickle.load(open('./data/pop_data.pkl', 'rb')) # population density data frame
@@ -128,7 +129,7 @@ eda_tab = dcc.Tab(label='EDA',
                                       ),dcc.Graph(id='rollout_map',
                                           style = {'height' : '100%'})],
                                           style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                  html.Div(children = [html.H2('CitiBike Rollout Plan'),'text'],
+                                  html.Div(children = [html.H2('CitiBike Rollout Plan'), rollout_clusters_blurb],
                                                   style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                   style = {'height' : '80vh'}),
 
@@ -152,7 +153,7 @@ eda_tab = dcc.Tab(label='EDA',
                                                 figure=pop_density,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Population Density in NYC'),'text'],
+                                        html.Div(children = [html.H2('Population Density in NYC'), pop_density_blurb],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '80vh','margin-top':'10px'}),
 
@@ -165,7 +166,7 @@ eda_tab = dcc.Tab(label='EDA',
                                                 figure = transit_locations,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Transit Locations in NYC'),'text'],
+                                        html.Div(children = [html.H2('Transit Locations in NYC'), transit_location_blurb],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '80vh','margin-top':'10px'}),
 
@@ -181,7 +182,7 @@ eda_tab = dcc.Tab(label='EDA',
                                                 figure=usage_trend_plot,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('CitiBike Usage Patters'),'text'],
+                                        html.Div(children = [html.H2('CitiBike Usage Patters'), usage_plot_blurb],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 
@@ -192,7 +193,7 @@ eda_tab = dcc.Tab(label='EDA',
                                                 figure=rides_per_year,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Annual Total Rides'),'text'],
+                                        html.Div(children = [html.H2('Annual Total Rides'), rides_per_year_blurb],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 
@@ -201,7 +202,7 @@ eda_tab = dcc.Tab(label='EDA',
                                         html.Div(dcc.Graph(id='rides_per_month',figure=rides_per_month,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Rides Per Month'),'text'],
+                                        html.Div(children = [html.H2('Rides Per Month'), rides_per_month_blurb],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 
@@ -210,7 +211,7 @@ eda_tab = dcc.Tab(label='EDA',
                                         html.Div(dcc.Graph(id='num_of_rides_by_minute', figure = rides_by_minute,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Rides by Minute'),'text'],
+                                        html.Div(children = [html.H2('Rides by Minute'), ride_per_minute_blurb],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 ])
