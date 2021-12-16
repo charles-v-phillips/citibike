@@ -2,7 +2,7 @@ from dash import dcc, html
 from project_info_blurbs import project_blurb, data_blurb
 from PIL import Image
 
-cb_photo = Image.open('./data/image/bob.jpg')
+cb_photo = Image.open('./data/image/pic1.jpg')
 
 intro_tab = dcc.Tab(label = 'Project Introduction',
                     value='intro',
@@ -13,5 +13,5 @@ intro_tab = dcc.Tab(label = 'Project Introduction',
                     html.Div(data_blurb),
                     html.Img(id = 'pic1',
                             src = cb_photo,
-                            style = {'width': 300, 'height': 'auto'})
+                            style = {'width': 500, 'height': 'auto'})
                     ])
