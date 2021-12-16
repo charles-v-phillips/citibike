@@ -7,6 +7,8 @@ import json
 from PIL import Image
 import plotly.express as px
 from secrets import mapbox_key
+from rebalance_blurbs import cluster_weekday_blurb, cluster_weekend_blurb, rebalance_time_blurb, rebalance_dist_blurb, rebalance_3d_weekday_blurb, rebalance_3d_weekend_blurb
+
 with open('./data/weekday_rebalancing.json', 'r') as js: # shape file for neighborhood boundaries, needed for population density plot
     weekday_rebalanced_plot = json.loads(js.read())
 
@@ -75,7 +77,7 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
                                                           mapboxKey=mapbox_key),
                                          style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
 
-                                html.Div(children = [html.H2('Weekday Rebalancing'),'text'],
+                                html.Div(children = [html.H2('Weekday Rebalancing'), rebalance_3d_weekday_blurb],
                                          style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],style = {'height' : '45vh'}),
                           html.Div(children=[
                                 html.Div(dash_deck.DeckGL(weekend_rebalanced_plot,
@@ -85,7 +87,7 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
                                                           mapboxKey=mapbox_key),
                                          style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
 
-                                html.Div(children = [html.H2('Weekend Rebalancing'),'text'],
+                                html.Div(children = [html.H2('Weekend Rebalancing'), rebalance_3d_weekend_blurb],
                                          style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],style = {'height' : '45vh','margin-top':'10px'}),
                           html.H1('Weekday Cluster Stations',style = {'margin-top': '10px'}),
                           html.Div(children = [ html.Div(children = [html.Img(id = 'c1',src = cluster0,style = {"height": "30vh","width": "auto"}),
@@ -97,7 +99,7 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
                                                                      html.Img(id = 'c7',src = cluster6,style = {"height": "30vh", "width": "auto"})],
                                                                 style={'width': '55%','height' : '100%', 'display': 'inline-block'}),
                                                 html.Div(children = [
-                                                        html.H1('Weekday Clusters'), 'somemore dummy text',dcc.Graph(id = 'weekday-cluster-graph',
+                                                        html.H1('Weekday Clusters'), cluster_weekday_blurb,dcc.Graph(id = 'weekday-cluster-graph',
                                                                                                                     figure = weekday_cluster_map)],
                                                          style={'width': '43%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
 
@@ -113,7 +115,7 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
                                                                      html.Img(id = 'wkndc6',src = weekend_cluster5,style = {"height": "34vh", "width": "auto"})],
                                                                 style={'width': '70%','height' : '100%', 'display': 'inline-block'}),
                                                 html.Div(children = [
-                                                        html.H1('DUMMY HEader'), 'dumdfjgvhdniughmy_text'],
+                                                        html.H1('Weekend Clusters'), cluster_weekend_blurb],
                                                          style={'width': '25%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
 
 
@@ -122,7 +124,7 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
                html.Div(children = [ html.Div(children = [html.Img(id = 'rebalancing_times', src = rebalancing_times, style = {"height": "68vh","width": "auto"})],
                                                                 style={'width': '70%','height' : '100%', 'display': 'inline-block'}),
                                                 html.Div(children = [
-                                                        html.H1('DUMMY HEader'), 'dumdfjgvhdniughmy_text'],
+                                                        html.H1('Distribution of Rebalanced Trip Times'), rebalance_time_blurb],
                                                          style={'width': '25%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
 
 
@@ -131,7 +133,7 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
                html.Div(children = [ html.Div(children = [html.Img(id = 'rebalancing_distances', src = rebalancing_distances, style = {"height": "68vh","width": "auto"})],
                                                                 style={'width': '70%','height' : '100%', 'display': 'inline-block'}),
                                                 html.Div(children = [
-                                                        html.H1('DUMMY HEader'), 'dumdfjgvhdniughmy_text'],
+                                                        html.H1('Distribution of Rebalance Trip Distance'), rebalance_dist_blurb],
                                                          style={'width': '25%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
 
 
@@ -139,6 +141,3 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
                                                 ])
 
              ])
-                            
-
-
