@@ -1,3 +1,4 @@
 #ignore stuff
 .DS_Store
 secrets.py
+secret.py

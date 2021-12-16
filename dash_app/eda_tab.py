@@ -5,7 +5,7 @@ import json
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
-from eda_blurbs import rollout_clusters_blurb, pop_density_blurb, transit_location_blurb, usage_plot_blurb, ride_per_minute_blurb, rides_per_month_blurb, rides_per_year_blurb
+from eda_blurbs import rollout_clusters_blurb, pop_density_blurb, transit_location_blurb, usage_plot_blurb, ride_per_minute_blurb, rides_per_month_blurb, rides_per_year_blurb, rides_per_day_blurb
 
 ## START POPULATION DENSITY GRAPHIC --------------------------
 pop_data = pickle.load(open('./data/pop_data.pkl', 'rb')) # population density data frame
@@ -85,11 +85,11 @@ rides_per_month = px.line(ride_time_data,
               x='ym',
               y='ridecount',
               title="Monthly Total Rides",
-              labels = dict(total_rides="Total Number of Rides", ym="Year-Month"),
+              labels = dict(ridecount="Number of Rides", ym="Date"),
               markers=True)
 rides_per_month.layout.plot_bgcolor = 'white'
 rides_per_month.update_traces(marker={'size': 12,
-                          'color': 'blue'})
+                          'color': 'blue'}, line = {'color': 'mediumslateblue'})
 rides_per_month.update_yaxes(nticks=15, ticks = 'outside', showgrid = False)
 rides_per_month.update_xaxes(nticks = 15, tickangle=45, ticks = 'outside', showgrid = False)
 
@@ -102,9 +102,9 @@ rides_by_minute_data = pickle.load(open('./data/countofridesbyminutes.pkl', 'rb'
 rides_by_minute = px.bar(rides_by_minute_data,
              x="durationinmin",
              y="count",
-             title="Trip Duration Count",
-             labels = dict(count="Total Number of Rides", durationinmin="Minutes"))
-rides_by_minute.update_traces(marker_color='blue')
+             title="Trip Duration Distribution",
+             labels = dict(count="Number of Rides", durationinmin="Time (min)"))
+rides_by_minute.update_traces(marker_color='steelblue')
 for data in rides_by_minute.data:
    data["width"] = 1.0
 rides_by_minute.layout.plot_bgcolor = 'white'
@@ -113,6 +113,23 @@ rides_by_minute.update_xaxes(nticks = 14, ticks = 'outside')
 
 
 ## END NUMBER OF RIDES BY MINUTE
+
+## START TOTAL DAILY Rides
+total_daily_rides_data = pickle.load(open('./data/totaldailyrides.pkl', 'rb'))
+
+total_daily_rides = px.scatter(total_daily_rides_data,
+              x='newdate',
+              y='numofrides',
+              title="Daily Total Rides",
+              labels = dict(numofrides="Number of Rides", newdate="Date"))
+
+total_daily_rides.layout.plot_bgcolor = 'white'
+total_daily_rides.update_traces(marker={'size': 4,
+                          'color': 'dodgerblue'})
+total_daily_rides.update_yaxes(nticks=15, ticks = 'outside', showgrid = False)
+total_daily_rides.update_xaxes(nticks = 15, tickangle=45, ticks = 'outside', showgrid = False)
+
+## END TOTAL DAILY RIDES
 
 eda_tab = dcc.Tab(label='EDA',
                   value='eda',
@@ -202,11 +219,20 @@ eda_tab = dcc.Tab(label='EDA',
                                         html.Div(dcc.Graph(id='rides_per_month',figure=rides_per_month,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Rides Per Month'), rides_per_month_blurb],
+                                        html.Div(children = [html.H2('Total Monthly Rides'), rides_per_month_blurb],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 
-                        # Rides per minute Div
+                        # #Rides per Day Div
+                        html.Div(children = [
+                                        html.Div(dcc.Graph(id='rides_per_day',figure=total_daily_rides,
+                                                style = {'height' : '100%'}),
+                                                style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
+                                        html.Div(children = [html.H2('Total Daily Rides'), rides_per_day_blurb],
+                                                        style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
+                                                        style = {'height' : '40vh','margin-top':'10px'}),
+
+                        # Rides by minute Div
                         html.Div(children = [
                                         html.Div(dcc.Graph(id='num_of_rides_by_minute', figure = rides_by_minute,
                                                 style = {'height' : '100%'}),

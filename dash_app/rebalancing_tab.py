@@ -6,7 +6,7 @@ import dash_deck
 import plotly.express as px
 import json
 from PIL import Image
-from secrets import mapbox_key
+from secret import mapbox_key
 from rebalance_blurbs import cluster_weekday_blurb,cluster_weekend_blurb,rebalance_time_blurb,rebalance_dist_blurb,rebalance_3d_weekday_blurb,rebalance_3d_weekend_blurb
 
 # JSON File for 3D Interactive Rebalancing Plot (Weekday)

@@ -13,3 +13,5 @@ ride_per_minute_blurb = '''This histogram displays the distribution of ride dura
 rides_per_month_blurb = '''The plot on the left shows the monthly total number of rides every year. There’s a clear upward trend of total rides per year as well as a seasonal trend. The usership of Citibike plummeted when Covid-19 broke out, but the number of rides went back to normal levels after the city started to reopen businesses.'''
 
 rides_per_year_blurb = 'FUCKKKKKK'
+
+rides_per_day_blurb = 'Bitches be biking thinking they exercising for real smh..'

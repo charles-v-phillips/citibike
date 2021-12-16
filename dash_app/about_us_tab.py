@@ -3,7 +3,7 @@ from PIL import Image
 
 hugh_summary = 'Hugh is a Data Scientist with a BS in Civil Engineering from the The College of New Jersey and an MS in Engineering Management from Duke University. After 5 years as an engineer, he pivoted to pursue Data Science and Analytics. He has a passion for extracting business value from data.'
 charles_summary = 'Charles has a BS in Mathematics with a minor in Computer Science from Stony Brook University. He is an aspiring Data Scientist'
-jung_summary = 'BE in Mechanical Engineering from Cooper Union. He is currently pursuing Data Science.'
+jung_summary = 'Jung is a real ass data scientist with a BE (no BS) in Mechanical Engineering from The Cooper Union. He also can shoot the basketball lights out, contested or not.'
 robert_summary = 'Robert is an aspiring Data Scientist with a BS in Chemistry and Mathematics from Binghamton University and a PhD in Computational Chemistry from Stanford University. He pivoted from academia to Data Science with a focus on problem-solving, analytics, and machine learning for technology companies.'
 
 hugh_photo = Image.open('./data/image/hugh.jpg')
