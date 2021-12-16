@@ -99,7 +99,7 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
                                                                      html.Img(id = 'c7',src = cluster6,style = {"height": "30vh", "width": "auto"})],
                                                                 style={'width': '55%','height' : '100%', 'display': 'inline-block'}),
                                                 html.Div(children = [
-                                                        html.H1('Weekday Clusters'), cluster_weekday_blurb,dcc.Graph(id = 'weekday-cluster-graph',
+                                                        html.H1('Weekday Clusters'), cluster_weekday_blurb,html.H3(' '),dcc.Graph(id = 'weekday-cluster-graph',
                                                                                                                     figure = weekday_cluster_map)],
                                                          style={'width': '43%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
 
@@ -113,28 +113,28 @@ rebalancing_tab = dcc.Tab(label='Rebalancing',
                                                                      html.Img(id = 'wkndc4',src = weekend_cluster3,style = {"height": "34vh", "width": "auto"}),
                                                                      html.Img(id = 'wkndc5',src = weekend_cluster4,style = {"height": "34vh", "width": "auto"}),
                                                                      html.Img(id = 'wkndc6',src = weekend_cluster5,style = {"height": "34vh", "width": "auto"})],
-                                                                style={'width': '70%','height' : '100%', 'display': 'inline-block'}),
+                                                                style={'width': '55%','height' : '100%', 'display': 'inline-block'}),
                                                 html.Div(children = [
                                                         html.H1('Weekend Clusters'), cluster_weekend_blurb],
-                                                         style={'width': '25%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
+                                                         style={'width': '43%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
 
 
 
                                                 ]),
                html.Div(children = [ html.Div(children = [html.Img(id = 'rebalancing_times', src = rebalancing_times, style = {"height": "68vh","width": "auto"})],
-                                                                style={'width': '70%','height' : '100%', 'display': 'inline-block'}),
+                                                                style={'width': '55%','height' : '100%', 'display': 'inline-block'}),
                                                 html.Div(children = [
                                                         html.H1('Distribution of Rebalanced Trip Times'), rebalance_time_blurb],
-                                                         style={'width': '25%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
+                                                         style={'width': '43%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
 
 
 
                                                 ]),
                html.Div(children = [ html.Div(children = [html.Img(id = 'rebalancing_distances', src = rebalancing_distances, style = {"height": "68vh","width": "auto"})],
-                                                                style={'width': '70%','height' : '100%', 'display': 'inline-block'}),
+                                                                style={'width': '55%','height' : '100%', 'display': 'inline-block'}),
                                                 html.Div(children = [
                                                         html.H1('Distribution of Rebalance Trip Distance'), rebalance_dist_blurb],
-                                                         style={'width': '25%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
+                                                         style={'width': '43%','margin-left' : '2%','height' : '100%', 'display': 'inline-block','vertical-align': 'top'})
 
 
 
