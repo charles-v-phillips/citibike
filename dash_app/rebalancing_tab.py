@@ -152,13 +152,14 @@ dcc.Tab(label='Rebalancing',
             # Weekday Cluster Div
             html.Div(children =[
                                 html.Div(children = [
-                                                    html.Img(id = 'c1',src = weekday_cluster0,style = {"height": "30vh","width": "auto"}),
-                                                    html.Img(id = 'c2',src = weekday_cluster1,style = {"height": "30vh","width": "auto"}),
                                                     html.Img(id = 'c3',src = weekday_cluster2,style = {"height": "30vh", "width": "auto"}),
+                                                    html.Img(id = 'c2',src = weekday_cluster1,style = {"height": "30vh","width": "auto"}),
+                                                    html.Img(id = 'c7',src = weekday_cluster6,style = {"height": "30vh", "width": "auto"}),
                                                     html.Img(id = 'c4',src = weekday_cluster3,style = {"height": "30vh", "width": "auto"}),
-                                                    html.Img(id = 'c5',src = weekday_cluster4,style = {"height": "30vh", "width": "auto"}),
+                                                    html.Img(id = 'c1',src = weekday_cluster0,style = {"height": "30vh","width": "auto"}),
                                                     html.Img(id = 'c6',src = weekday_cluster5,style = {"height": "30vh", "width": "auto"}),
-                                                    html.Img(id = 'c7',src = weekday_cluster6,style = {"height": "30vh", "width": "auto"})],
+                                                    html.Img(id = 'c5',src = weekday_cluster4,style = {"height": "30vh", "width": "auto"})
+                                                    ],
                                         style={'width': '55%','height' : '100%', 'display': 'inline-block'}),
 
                                 html.Div(children = [
@@ -184,9 +185,9 @@ dcc.Tab(label='Rebalancing',
             # Weekday Cluster Div
             html.Div(children=[
                                 html.Div(children=[
-                                                    html.Img(id = 'wkndc1',src = weekend_cluster0,style = {"height": "30vh","width": "auto"}),
-                                                    html.Img(id = 'wkndc2',src = weekend_cluster1,style = {"height": "30vh","width": "auto"}),
                                                     html.Img(id = 'wkndc3',src = weekend_cluster2,style = {"height": "30vh", "width": "auto"}),
+                                                    html.Img(id = 'wkndc2',src = weekend_cluster1,style = {"height": "30vh","width": "auto"}),
+                                                    html.Img(id = 'wkndc1',src = weekend_cluster0,style = {"height": "30vh","width": "auto"}),
                                                     html.Img(id = 'wkndc4',src = weekend_cluster3,style = {"height": "30vh", "width": "auto"}),
                                                     html.Img(id = 'wkndc5',src = weekend_cluster4,style = {"height": "30vh", "width": "auto"}),
                                                     html.Img(id = 'wkndc6',src = weekend_cluster5,style = {"height": "30vh", "width": "auto"})],

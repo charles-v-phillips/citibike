@@ -1,5 +1,5 @@
 from dash import dcc, html
 conclusion_tab = dcc.Tab(
-    label = 'Cuntclusion',
+    label = 'Conclusion',
     value = 'conclusion',
-    children = [html.Div('On top of the rebalancing that CitiBike already does, they still got more rebalancing to do smfh.')])
+    children = [html.Div('Bitches be citibiking to the Dunkin Donuts talkin bout "Queen did her cardio for the day" smfh.')])
