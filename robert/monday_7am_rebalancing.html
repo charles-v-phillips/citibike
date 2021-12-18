@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~8.5.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-map-container {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+#map {
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+#deckgl-overlay {
+  z-index: 2;
+  background: none;
+}
+
+#deck-map-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const jsonInput = {"initialViewState": {"bearing": 290, "latitude": 40.74, "longitude": -74, "pitch": 90, "zoom": 11.9}, "layers": [{"@@type": "ArcLayer", "autoHighlight": true, "data": [{"dock_id_give": 3296, "dock_id_receive": 3294, "dock_name_give": "E 93 St & 2 Ave", "dock_name_receive": "E 91 St & Park Ave", "latitude_give": 40.782454175279874, "latitude_receive": 40.7835016, "longitude_give": -73.9489196240902, "longitude_receive": -73.955327, "num_bikes": 7}, {"dock_id_give": 3324, "dock_id_receive": 3306, "dock_name_give": "3 Ave & 14 St", "dock_name_receive": "10 St & 7 Ave", "latitude_give": 40.6685455, "latitude_receive": 40.6662078, "longitude_give": -73.99333264, "longitude_receive": -73.98199886, "num_bikes": 6}, {"dock_id_give": 3109, "dock_id_receive": 3452, "dock_name_give": "Banker St & Meserole Ave", "dock_name_receive": "Bayard St & Leonard St", "latitude_give": 40.72606, "latitude_receive": 40.71915571298016, "longitude_give": -73.95621, "longitude_receive": -73.94885393926462, "num_bikes": 5}, {"dock_id_give": 3463, "dock_id_receive": 3462, "dock_name_give": "E 16 St & Irving Pl", "dock_name_receive": "E 44 St & 2 Ave", "latitude_give": 40.73536704543461, "latitude_receive": 40.751183874632765, "longitude_give": -73.98797393608542, "longitude_receive": -73.97138714790344, "num_bikes": 5}, {"dock_id_give": 3502, "dock_id_receive": 3309, "dock_name_give": "Lexington Ave & E 111 St", "dock_name_receive": "E 97 St & 3 Ave", "latitude_give": 40.7954121, "latitude_receive": 40.7859201, "longitude_give": -73.9441232, "longitude_receive": -73.94860294, "num_bikes": 4}, {"dock_id_give": 3373, "dock_id_receive": 3358, "dock_name_give": "3 St & 3 Ave", "dock_name_receive": "Garfield Pl & 8 Ave", "latitude_give": 40.6750705, "latitude_receive": 40.6711978, "longitude_give": -73.98775226, "longitude_receive": -73.97484126, "num_bikes": 4}, {"dock_id_give": 3399, "dock_id_receive": 3365, "dock_name_give": "7 St & 3 Ave", "dock_name_receive": "3 St & 7 Ave", "latitude_give": 40.67260298150126, "latitude_receive": 40.6703837, "longitude_give": -73.98983001708984, "longitude_receive": -73.97839676, "num_bikes": 4}, {"dock_id_give": 267, "dock_id_receive": 469, "dock_name_give": "Broadway & W 36 St", "dock_name_receive": "Broadway & W 53 St", "latitude_give": 40.75097711464934, "latitude_receive": 40.76344058, "longitude_give": -73.9876542861167, "longitude_receive": -73.98268129, "num_bikes": 3}, {"dock_id_give": 3387, "dock_id_receive": 3294, "dock_name_give": "E 106 St & Madison Ave", "dock_name_receive": "E 91 St & Park Ave", "latitude_give": 40.7934337, "latitude_receive": 40.7835016, "longitude_give": -73.94945003, "longitude_receive": -73.955327, "num_bikes": 3}, {"dock_id_give": 3312, "dock_id_receive": 3362, "dock_name_give": "1 Ave & E 94 St", "dock_name_receive": "Madison Ave & E 82 St", "latitude_give": 40.781721203905846, "latitude_receive": 40.7781314, "longitude_give": -73.94594001485011, "longitude_receive": -73.96069399, "num_bikes": 3}, {"dock_id_give": 3096, "dock_id_receive": 3452, "dock_name_give": "Union Ave & N 12 St", "dock_name_receive": "Bayard St & Leonard St", "latitude_give": 40.71924, "latitude_receive": 40.71915571298016, "longitude_give": -73.95242, "longitude_receive": -73.94885393926462, "num_bikes": 3}, {"dock_id_give": 3494, "dock_id_receive": 3309, "dock_name_give": "E 115 St & Lexington Ave", "dock_name_receive": "E 97 St & 3 Ave", "latitude_give": 40.797911, "latitude_receive": 40.7859201, "longitude_give": -73.9423, "longitude_receive": -73.94860294, "num_bikes": 3}, {"dock_id_give": 3373, "dock_id_receive": 3423, "dock_name_give": "3 St & 3 Ave", "dock_name_receive": "West Drive & Prospect Park West", "latitude_give": 40.6750705, "latitude_receive": 40.66106337873646, "longitude_give": -73.98775226, "longitude_receive": -73.97945255440673, "num_bikes": 3}, {"dock_id_give": 3419, "dock_id_receive": 3249, "dock_name_give": "Douglass St & 4 Ave", "dock_name_receive": "Verona Pl & Fulton St", "latitude_give": 40.6792788, "latitude_receive": 40.6803560840434, "longitude_give": -73.98154004, "longitude_receive": -73.9476791024208, "num_bikes": 3}], "getSourceColor": [0, 255, 0, 150], "getSourcePosition": "@@=[longitude_give, latitude_give]", "getTargetColor": [240, 100, 0, 150], "getTargetPosition": "@@=[longitude_receive, latitude_receive]", "getTilt": 15, "getWidth": "@@=num_bikes", "id": "6a2664b3-1b1d-4f27-8d4c-c2543c9c1783", "pickable": true}], "mapProvider": "carto", "mapStyle": "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json", "views": [{"@@type": "MapView", "controller": true}]};
+    const tooltip = {'html': '{num_bikes} bikes need rebalancing from<br />{dock_name_give} to {dock_name_receive}'};
+    const customLibraries = null;
+
+    const deckInstance = createDeck({
+                  container: document.getElementById('deck-container'),
+      jsonInput,
+      tooltip,
+      customLibraries
+    });
+
+  </script>
+</html>
