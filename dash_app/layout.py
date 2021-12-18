@@ -13,7 +13,7 @@ tabs = dcc.Tabs(id="tabs-example-graph", children=[intro_tab.intro_tab,
                                                     eda_tab.eda_tab,
                                                     rebalancing_tab.rebalancing_tab,
                                                     rebalance_strategy_tab.rebalance_strategy_tab,
-                                                    about_us_tab.about_us_tab
+                                                    about_us_tab.about_us_tab,
                                                     bonb_tab.conclusion_tab],
                                                     value='intro')
 

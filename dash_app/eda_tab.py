@@ -139,10 +139,10 @@ eda_tab = dcc.Tab(label='EDA',
                                     #Rollout Map Div
                                   html.Div(children = [dcc.Slider(
                                           id='slider',
-                                          marks={i: '{}'.format(i) for i in range(1, 10)},
-                                          min=1,
-                                          max=9,
-                                          value=1
+                                          marks={i: '{}'.format(i) for i in range(2013, 2022)},
+                                          min=2013,
+                                          max=2021,
+                                          value=2013
                                       ),dcc.Graph(id='rollout_map',
                                           style = {'height' : '100%'})],
                                           style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
