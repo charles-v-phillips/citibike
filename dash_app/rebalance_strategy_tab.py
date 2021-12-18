@@ -6,6 +6,10 @@ from secrets import mapbox_key
 import pandas as pd
 
 max_bikes_input = dcc.Input(id = 'max_bikes_input', placeholder = 'Input Max Bikes you can move')
+min_cargo_size = dcc.Input(id = 'min_cargo_size', placeholder = 'Min Cargo Size')
+max_distance = dcc.Input(id='max_distance', placeholder = 'Max Distance')
+low_availability_threshold = dcc.Input(id = 'low_availability_threshold', placeholder = 'Low Availibility Threshold')
+high_availibility_threshold = dcc.Input(id = 'high_availability_threshold', placeholder = 'High Availability Threshold')
 
 weather_response = requests.get('https://api.openweathermap.org/data/2.5/onecall?lat=40.7812&lon=-73.9665&exclude=minutely,current,daily,alerts&units=metric&appid=404310456b8e1c31228341dd6c95dd04')
 weather = weather_response.json()
@@ -13,6 +17,8 @@ times  = [{'label' : str(pd.to_datetime(weather['hourly'][i]['dt'],unit = 's')),
            'value' : str(pd.to_datetime(weather['hourly'][i]['dt'],unit = 's'))} for i in range(len(weather['hourly']))]
 
 date_picker = dcc.Dropdown(id = 'date_input', options = times,value = times[0]['value'])
+calculate_button = html.Button('Calculate', id='calculate_button', n_clicks=0)
+
 
 BLUE_RGB = [0, 59, 112, 90]
 RED_RGB = [217, 38, 28, 90]
@@ -42,8 +48,7 @@ dcc.Tab(
     value='rebalance_strategy',
     children = [
                     html.Div('eyo'),
-                    max_bikes_input,
-                    html.Div(date_picker,style = {'width' : '20%'}),
+                    html.Div(children = [max_bikes_input,min_cargo_size,max_distance,low_availability_threshold,high_availibility_threshold,date_picker,calculate_button],style = {'display': 'inline-block'}),
                     html.Div(children=[
                                         html.Div(children = [dash_deck.DeckGL(r.to_json(),style = {'height' : '100%',"position": 'relative'},
                                                                   id='rebalancing-strategy-graphic',

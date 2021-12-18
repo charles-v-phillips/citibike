@@ -1,7 +1,7 @@
 
 #-------------------- PACKAGES -------------------------
 import dash
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 import pandas as pd
 import plotly.express as px
@@ -53,10 +53,26 @@ def update_plot(rollout):
 
 @app.callback(
     Output(component_id='rebalancing_strategy_left_div',component_property = 'children'),
-    Input(component_id='date_input', component_property='value')
+    State(component_id='date_input', component_property='value'),
+    State(component_id = 'max_bikes_input',component_property='value'),
+    State(component_id = 'min_cargo_size',component_property='value'),
+    State(component_id = 'max_distance',component_property='value'),
+    State(component_id = 'low_availability_threshold',component_property='value'),
+    State(component_id = 'high_availability_threshold',component_property='value'),
+    Input('calculate_button', 'n_clicks')
+
+
+
+
 )
-def render_map(time):
-    print(time)
+def render_map(date_input,
+            max_bikes_input,
+            min_cargo_size,
+            max_distance,
+            low_availability_threshold,
+            high_availability_threshold,
+            calculate_button):
+    print(date_input,max_bikes_input,min_cargo_size,max_distance,low_availability_threshold,high_availability_threshold)
     return [None]
     #TODO: need to return a whole ass child here
 
