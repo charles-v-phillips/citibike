@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~8.5.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-map-container {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+#map {
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+#deckgl-overlay {
+  z-index: 2;
+  background: none;
+}
+
+#deck-map-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const jsonInput = {"initialViewState": {"bearing": 45, "latitude": 40.74, "longitude": -74, "pitch": 50, "zoom": 8}, "layers": [{"@@type": "ArcLayer", "autoHighlight": true, "data": [{"dock_id_give": 355, "dock_id_receive": 195, "dock_name_give": "Bayard St & Baxter St", "dock_name_receive": "Liberty St & Broadway", "latitude_give": 40.71602118, "latitude_receive": 40.70905623, "longitude_give": -73.99974372, "longitude_receive": -74.01043382, "num_bikes": 10}, {"dock_id_give": 3374, "dock_id_receive": 3437, "dock_name_give": "Central Park North & Adam Clayton Powell Blvd", "dock_name_receive": "Riverside Dr & W 91 St", "latitude_give": 40.799484002827455, "latitude_receive": 40.79313480986663, "longitude_give": -73.95561300212057, "longitude_receive": -73.97700369358063, "num_bikes": 9}, {"dock_id_give": 168, "dock_id_receive": 528, "dock_name_give": "W 18 St & 6 Ave", "dock_name_receive": "2 Ave & E 31 St", "latitude_give": 40.73971301, "latitude_receive": 40.742909020486906, "longitude_give": -73.99456405, "longitude_receive": -73.9770605796758, "num_bikes": 9}, {"dock_id_give": 3324, "dock_id_receive": 3418, "dock_name_give": "3 Ave & 14 St", "dock_name_receive": "Plaza St West & Flatbush Ave", "latitude_give": 40.6685455, "latitude_receive": 40.6750207, "longitude_give": -73.99333264, "longitude_receive": -73.97111473, "num_bikes": 8}, {"dock_id_give": 3165, "dock_id_receive": 469, "dock_name_give": "Central Park West & W 72 St", "dock_name_receive": "Broadway & W 53 St", "latitude_give": 40.775793063619005, "latitude_receive": 40.76344058, "longitude_give": -73.97620285768829, "longitude_receive": -73.98268129, "num_bikes": 7}, {"dock_id_give": 3318, "dock_id_receive": 3141, "dock_name_give": "2 Ave & E 96 St", "dock_name_receive": "1 Ave & E 68 St", "latitude_give": 40.7839636, "latitude_receive": 40.76500524724615, "longitude_give": -73.9471673, "longitude_receive": -73.9581849122329, "num_bikes": 7}, {"dock_id_give": 3409, "dock_id_receive": 3479, "dock_name_give": "Bergen St & Smith St", "dock_name_receive": "Picnic Point", "latitude_give": 40.6867443, "latitude_receive": 40.68512559515416, "longitude_give": -73.99063168, "longitude_receive": -74.02535319328307, "num_bikes": 7}, {"dock_id_give": 462, "dock_id_receive": 524, "dock_name_give": "W 22 St & 10 Ave", "dock_name_receive": "W 43 St & 6 Ave", "latitude_give": 40.74691959, "latitude_receive": 40.75527307, "longitude_give": -74.00451887, "longitude_receive": -73.98316936, "num_bikes": 7}, {"dock_id_give": 539, "dock_id_receive": 3075, "dock_name_give": "Metropolitan Ave & Bedford Ave", "dock_name_receive": "Division Ave & Marcy Ave", "latitude_give": 40.71534825, "latitude_receive": 40.70708701, "longitude_give": -73.96024116, "longitude_receive": -73.95796783, "num_bikes": 7}, {"dock_id_give": 3500, "dock_id_receive": 3328, "dock_name_give": "E 115 St & Madison Ave", "dock_name_receive": "W 100 St & Manhattan Ave", "latitude_give": 40.7989445, "latitude_receive": 40.79499998642669, "longitude_give": -73.944846, "longitude_receive": -73.96450000678665, "num_bikes": 6}, {"dock_id_give": 439, "dock_id_receive": 2012, "dock_name_give": "E 4 St & 2 Ave", "dock_name_receive": "E 27 St & 1 Ave", "latitude_give": 40.7262807, "latitude_receive": 40.739445, "longitude_give": -73.98978041, "longitude_receive": -73.976806, "num_bikes": 6}, {"dock_id_give": 3158, "dock_id_receive": 469, "dock_name_give": "W 63 St & Broadway", "dock_name_receive": "Broadway & W 53 St", "latitude_give": 40.77163852214548, "latitude_receive": 40.76344058, "longitude_give": -73.98261428344092, "longitude_receive": -73.98268129, "num_bikes": 5}, {"dock_id_give": 3123, "dock_id_receive": 3127, "dock_name_give": "31 St & Thomson Ave", "dock_name_receive": "9 St & 44 Rd", "latitude_give": 40.744697437987, "latitude_receive": 40.74966, "longitude_give": -73.93540373202681, "longitude_receive": -73.9521, "num_bikes": 5}, {"dock_id_give": 3224, "dock_id_receive": 448, "dock_name_give": "W 13 St & Hudson St", "dock_name_receive": "W 37 St & 10 Ave", "latitude_give": 40.73997354103409, "latitude_receive": 40.756603608838965, "longitude_give": -74.00513872504233, "longitude_receive": -73.99790090133699, "num_bikes": 5}, {"dock_id_give": 3137, "dock_id_receive": 469, "dock_name_give": "5 Ave & E 73 St", "dock_name_receive": "Broadway & W 53 St", "latitude_give": 40.77282817194925, "latitude_receive": 40.76344058, "longitude_give": -73.96685277301444, "longitude_receive": -73.98268129, "num_bikes": 4}, {"dock_id_give": 3356, "dock_id_receive": 3134, "dock_name_give": "Amsterdam Ave & W 66 St", "dock_name_receive": "3 Ave & E 62 St", "latitude_give": 40.774667118943206, "latitude_receive": 40.76312584, "longitude_give": -73.98470568839504, "longitude_receive": -73.96526895, "num_bikes": 4}, {"dock_id_give": 3312, "dock_id_receive": 3141, "dock_name_give": "1 Ave & E 94 St", "dock_name_receive": "1 Ave & E 68 St", "latitude_give": 40.781721203905846, "latitude_receive": 40.76500524724615, "longitude_give": -73.94594001485011, "longitude_receive": -73.9581849122329, "num_bikes": 4}, {"dock_id_give": 3416, "dock_id_receive": 3358, "dock_name_give": "7 Ave & Park Pl", "dock_name_receive": "Garfield Pl & 8 Ave", "latitude_give": 40.67761468980208, "latitude_receive": 40.6711978, "longitude_give": -73.97324284256149, "longitude_receive": -73.97484126, "num_bikes": 4}, {"dock_id_give": 3410, "dock_id_receive": 406, "dock_name_give": "Dean St & Hoyt St", "dock_name_receive": "Hicks St & Montague St", "latitude_give": 40.6864442, "latitude_receive": 40.69512845, "longitude_give": -73.98759104, "longitude_receive": -73.99595065, "num_bikes": 4}, {"dock_id_give": 368, "dock_id_receive": 195, "dock_name_give": "Carmine St & 6 Ave", "dock_name_receive": "Liberty St & Broadway", "latitude_give": 40.73038599, "latitude_receive": 40.70905623, "longitude_give": -74.00214988, "longitude_receive": -74.01043382, "num_bikes": 3}, {"dock_id_give": 3387, "dock_id_receive": 3437, "dock_name_give": "E 106 St & Madison Ave", "dock_name_receive": "Riverside Dr & W 91 St", "latitude_give": 40.7934337, "latitude_receive": 40.79313480986663, "longitude_give": -73.94945003, "longitude_receive": -73.97700369358063, "num_bikes": 3}, {"dock_id_give": 3163, "dock_id_receive": 164, "dock_name_give": "Central Park West & W 68 St", "dock_name_receive": "E 47 St & 2 Ave", "latitude_give": 40.7734066, "latitude_receive": 40.75323098, "longitude_give": -73.97782542, "longitude_receive": -73.97032517, "num_bikes": 3}, {"dock_id_give": 3497, "dock_id_receive": 3294, "dock_name_give": "Pleasant Ave & E 116 St", "dock_name_receive": "E 91 St & Park Ave", "latitude_give": 40.7949879, "latitude_receive": 40.7835016, "longitude_give": -73.9333349, "longitude_receive": -73.955327, "num_bikes": 3}, {"dock_id_give": 334, "dock_id_receive": 3462, "dock_name_give": "W 20 St & 7 Ave", "dock_name_receive": "E 44 St & 2 Ave", "latitude_give": 40.74238787343948, "latitude_receive": 40.751183874632765, "longitude_give": -73.9972623541448, "longitude_receive": -73.97138714790344, "num_bikes": 3}, {"dock_id_give": 168, "dock_id_receive": 2012, "dock_name_give": "W 18 St & 6 Ave", "dock_name_receive": "E 27 St & 1 Ave", "latitude_give": 40.73971301, "latitude_receive": 40.739445, "longitude_give": -73.99456405, "longitude_receive": -73.976806, "num_bikes": 3}, {"dock_id_give": 3109, "dock_id_receive": 3127, "dock_name_give": "Banker St & Meserole Ave", "dock_name_receive": "9 St & 44 Rd", "latitude_give": 40.72606, "latitude_receive": 40.74966, "longitude_give": -73.95621, "longitude_receive": -73.9521, "num_bikes": 3}, {"dock_id_give": 439, "dock_id_receive": 224, "dock_name_give": "E 4 St & 2 Ave", "dock_name_receive": "Spruce St & Nassau St", "latitude_give": 40.7262807, "latitude_receive": 40.71146364, "longitude_give": -73.98978041, "longitude_receive": -74.00552427, "num_bikes": 3}, {"dock_id_give": 368, "dock_id_receive": 224, "dock_name_give": "Carmine St & 6 Ave", "dock_name_receive": "Spruce St & Nassau St", "latitude_give": 40.73038599, "latitude_receive": 40.71146364, "longitude_give": -74.00214988, "longitude_receive": -74.00552427, "num_bikes": 3}, {"dock_id_give": 3224, "dock_id_receive": 491, "dock_name_give": "W 13 St & Hudson St", "dock_name_receive": "E 24 St & Park Ave S", "latitude_give": 40.73997354103409, "latitude_receive": 40.7409637345293, "longitude_give": -74.00513872504233, "longitude_receive": -73.98602212987434, "num_bikes": 3}, {"dock_id_give": 2002, "dock_id_receive": 3452, "dock_name_give": "Wythe Ave & Metropolitan Ave", "dock_name_receive": "Bayard St & Leonard St", "latitude_give": 40.71688699585005, "latitude_receive": 40.71915571298016, "longitude_give": -73.96319799439499, "longitude_receive": -73.94885393926462, "num_bikes": 3}, {"dock_id_give": 3416, "dock_id_receive": 3384, "dock_name_give": "7 Ave & Park Pl", "dock_name_receive": "Smith St & 3 St", "latitude_give": 40.67761468980208, "latitude_receive": 40.6787242, "longitude_give": -73.97324284256149, "longitude_receive": -73.99599099, "num_bikes": 3}, {"dock_id_give": 310, "dock_id_receive": 3306, "dock_name_give": "State St & Smith St", "dock_name_receive": "10 St & 7 Ave", "latitude_give": 40.68926941787984, "latitude_receive": 40.6662078, "longitude_give": -73.98912866898746, "longitude_receive": -73.98199886, "num_bikes": 3}, {"dock_id_give": 2002, "dock_id_receive": 3449, "dock_name_give": "Wythe Ave & Metropolitan Ave", "dock_name_receive": "Eckford St & Engert Ave", "latitude_give": 40.71688699585005, "latitude_receive": 40.72146256229816, "longitude_give": -73.96319799439499, "longitude_receive": -73.94800901412965, "num_bikes": 3}, {"dock_id_give": 310, "dock_id_receive": 245, "dock_name_give": "State St & Smith St", "dock_name_receive": "Myrtle Ave & St Edwards St", "latitude_give": 40.68926941787984, "latitude_receive": 40.69327015524063, "longitude_give": -73.98912866898746, "longitude_receive": -73.97703873924483, "num_bikes": 3}, {"dock_id_give": 3427, "dock_id_receive": 249, "dock_name_give": "Lafayette St & Jersey St", "dock_name_receive": "Harrison St & Hudson St", "latitude_give": 40.72430527250332, "latitude_receive": 40.718709872275056, "longitude_give": -73.99600982666014, "longitude_receive": -74.00900090783449, "num_bikes": 3}, {"dock_id_give": 296, "dock_id_receive": 389, "dock_name_give": "Division St & Bowery", "dock_name_receive": "Broadway & Berry St", "latitude_give": 40.71413089, "latitude_receive": 40.71044554, "longitude_give": -73.9970468, "longitude_receive": -73.96525063, "num_bikes": 3}], "getSourceColor": [240, 100, 0, 150], "getSourcePosition": "@@=[longitude_give, latitude_give]", "getTargetColor": [0, 255, 0, 150], "getTargetPosition": "@@=[longitude_receive, latitude_receive]", "getTilt": 15, "getWidth": "@@=num_bikes", "id": "a4d64454-1e3d-455a-bae2-5c26b438e4c2", "pickable": true}], "mapProvider": "carto", "mapStyle": "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json", "views": [{"@@type": "MapView", "controller": true}]};
+    const tooltip = {'html': '{num_bikes} bikes need rebalancing from<br />{dock_name_give} to {dock_name_receive}'};
+    const customLibraries = null;
+
+    const deckInstance = createDeck({
+                  container: document.getElementById('deck-container'),
+      jsonInput,
+      tooltip,
+      customLibraries
+    });
+
+  </script>
+</html>
