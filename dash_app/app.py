@@ -51,6 +51,16 @@ def update_plot(rollout):
     return [map]
 
 
+@app.callback(
+    Output(component_id='rebalancing_strategy_left_div',component_property = 'children'),
+    Input(component_id='date_input', component_property='value')
+)
+def render_map(time):
+    print(time)
+    return [None]
+    #TODO: need to return a whole ass child here
+
+
 
 
 #------------------------- RUN APP

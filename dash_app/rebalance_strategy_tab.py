@@ -12,8 +12,29 @@ weather = weather_response.json()
 times  = [{'label' : str(pd.to_datetime(weather['hourly'][i]['dt'],unit = 's')),
            'value' : str(pd.to_datetime(weather['hourly'][i]['dt'],unit = 's'))} for i in range(len(weather['hourly']))]
 
-date_picker = dcc.Dropdown(id = 'date_input', options = times)
+date_picker = dcc.Dropdown(id = 'date_input', options = times,value = times[0]['value'])
 
+BLUE_RGB = [0, 59, 112, 90]
+RED_RGB = [217, 38, 28, 90]
+arc_layer = pdk.Layer(
+    "ArcLayer",
+    # data = weekday_grouped[:300],
+    # get_source_position=['end_lon','end_lat'],
+    # get_target_position = ['next_lon','next_lat'],
+    get_tilt=15,
+    get_source_color=RED_RGB,
+    get_target_color=BLUE_RGB,
+    pickable=True,
+    auto_highlight=True,
+    # get_width = 'count/700'
+    )
+
+view_state = pdk.ViewState(latitude = 40.778786,longitude = -73.974785, bearing=45, pitch=50, zoom=11,)
+# latitude = 40.778786,longitude = -73.974785
+
+TOOLTIP_TEXT = {"html": "{count} bikes moved from {end_station}<br />\
+                to {next_station}Home of commuter in red; work location in green"}
+r = pdk.Deck(arc_layer, initial_view_state=view_state, tooltip=TOOLTIP_TEXT,map_style = 'light')
 
 rebalance_strategy_tab =\
 dcc.Tab(
@@ -22,14 +43,15 @@ dcc.Tab(
     children = [
                     html.Div('eyo'),
                     max_bikes_input,
-                    date_picker,
+                    html.Div(date_picker,style = {'width' : '20%'}),
                     html.Div(children=[
-                                        html.Div(dash_deck.DeckGL(style = {'height' : '100%',"position": 'relative'},
+                                        html.Div(children = [dash_deck.DeckGL(r.to_json(),style = {'height' : '100%',"position": 'relative'},
                                                                   id='rebalancing-strategy-graphic',
-                                                                  mapboxKey=mapbox_key),
+                                                                  mapboxKey=mapbox_key)],
                                                   style={'width': '60%',
                                                          'height' : '100%',
-                                                         'display': 'inline-block'}),
+                                                         'display': 'inline-block'},
+                                                  id = 'rebalancing_strategy_left_div'),
 
                                         html.Div(children =[
                                                     html.H2('Weekday Rebalancing'),
