@@ -96,7 +96,7 @@ TOOLTIP_TEXT = {"html": "{count} bikes moved from {end_station}<br />\
 
 
 rebalancing_tab =\
-dcc.Tab(label='Rebalancing',
+dcc.Tab(label='Current Rebalancing',
         value='rebalancing',
         children = [
             #Weekday Rebalancing Div
@@ -151,71 +151,71 @@ dcc.Tab(label='Rebalancing',
                     src = legend,
                     style = {'width':'auto', 'height': 100}),
             # Weekday Cluster Station Title
-            html.H1('Weekday Cluster Stations',style = {'margin-top': '10px'}),
-
-
-
-            # Weekday Cluster Div
-            html.Div(children =[
-                                html.Div(children = [
-                                                    html.Img(id = 'c3',src = weekday_cluster2,style = {"height": "30vh", "width": "auto"}),
-                                                    html.Img(id = 'c2',src = weekday_cluster1,style = {"height": "30vh","width": "auto"}),
-                                                    html.Img(id = 'c7',src = weekday_cluster6,style = {"height": "30vh", "width": "auto"}),
-                                                    html.Img(id = 'c4',src = weekday_cluster3,style = {"height": "30vh", "width": "auto"}),
-                                                    html.Img(id = 'c1',src = weekday_cluster0,style = {"height": "30vh","width": "auto"}),
-                                                    html.Img(id = 'c6',src = weekday_cluster5,style = {"height": "30vh", "width": "auto"}),
-                                                    html.Img(id = 'c5',src = weekday_cluster4,style = {"height": "30vh", "width": "auto"})
-                                                    ],
-                                        style={'width': '55%','height' : '100%', 'display': 'inline-block'}),
-
-                                html.Div(children = [
-                                                    html.H1('Weekday Clusters'),
-                                                    cluster_weekday_blurb,
-                                                    html.H3(' '),
-                                                    dcc.Graph(id = 'weekday-cluster-graph',
-                                                              figure = weekday_cluster_map)],
-                                         style={'width': '43%',
-                                                'margin-left' : '2%',
-                                                'height' : '100%',
-                                                'display': 'inline-block',
-                                                'vertical-align': 'top'})
-            ]),
-
-
-
-            # Weekend Cluster Title
-            html.H1('Weekend Cluster Stations',style = {'margin-top': '10px'}),
-
-
-
-            # Weekday Cluster Div
-            html.Div(children=[
-                                html.Div(children=[
-                                                    html.Img(id = 'wkndc3',src = weekend_cluster2,style = {"height": "30vh", "width": "auto"}),
-                                                    html.Img(id = 'wkndc2',src = weekend_cluster1,style = {"height": "30vh","width": "auto"}),
-                                                    html.Img(id = 'wkndc1',src = weekend_cluster0,style = {"height": "30vh","width": "auto"}),
-                                                    html.Img(id = 'wkndc4',src = weekend_cluster3,style = {"height": "30vh", "width": "auto"}),
-                                                    html.Img(id = 'wkndc5',src = weekend_cluster4,style = {"height": "30vh", "width": "auto"}),
-                                                    html.Img(id = 'wkndc6',src = weekend_cluster5,style = {"height": "30vh", "width": "auto"})],
-                                         style={'width': '55%',
-                                                'height' : '100%',
-                                                'display': 'inline-block'}),
-                                html.Div(children = [
-                                                    html.H1('Weekend Clusters'),
-                                                    cluster_weekend_blurb,
-                                                    html.H3(' '),
-                                                    dcc.Graph(id = 'weekend-cluster-graph',
-                                                    figure = weekend_cluster_map)],
-                                         style={'width': '43%',
-                                                'margin-left' : '2%',
-                                                'height' : '100%',
-                                                'display': 'inline-block',
-                                                'vertical-align': 'top'})
-                ]),
-
-
-
-               #Rebalancing Times Div
+            # html.H1('Weekday Cluster Stations',style = {'margin-top': '10px'}),
+            #
+            #
+            #
+            # # Weekday Cluster Div
+            # html.Div(children =[
+            #                     html.Div(children = [
+            #                                         html.Img(id = 'c3',src = weekday_cluster2,style = {"height": "30vh", "width": "auto"}),
+            #                                         html.Img(id = 'c2',src = weekday_cluster1,style = {"height": "30vh","width": "auto"}),
+            #                                         html.Img(id = 'c7',src = weekday_cluster6,style = {"height": "30vh", "width": "auto"}),
+            #                                         html.Img(id = 'c4',src = weekday_cluster3,style = {"height": "30vh", "width": "auto"}),
+            #                                         html.Img(id = 'c1',src = weekday_cluster0,style = {"height": "30vh","width": "auto"}),
+            #                                         html.Img(id = 'c6',src = weekday_cluster5,style = {"height": "30vh", "width": "auto"}),
+            #                                         html.Img(id = 'c5',src = weekday_cluster4,style = {"height": "30vh", "width": "auto"})
+            #                                         ],
+            #                             style={'width': '55%','height' : '100%', 'display': 'inline-block'}),
+            #
+            #                     html.Div(children = [
+            #                                         html.H1('Weekday Clusters'),
+            #                                         cluster_weekday_blurb,
+            #                                         html.H3(' '),
+            #                                         dcc.Graph(id = 'weekday-cluster-graph',
+            #                                                   figure = weekday_cluster_map)],
+            #                              style={'width': '43%',
+            #                                     'margin-left' : '2%',
+            #                                     'height' : '100%',
+            #                                     'display': 'inline-block',
+            #                                     'vertical-align': 'top'})
+            # ]),
+            #
+            #
+            #
+            # # Weekend Cluster Title
+            # html.H1('Weekend Cluster Stations',style = {'margin-top': '10px'}),
+            #
+            #
+            #
+            # # Weekday Cluster Div
+            # html.Div(children=[
+            #                     html.Div(children=[
+            #                                         html.Img(id = 'wkndc3',src = weekend_cluster2,style = {"height": "30vh", "width": "auto"}),
+            #                                         html.Img(id = 'wkndc2',src = weekend_cluster1,style = {"height": "30vh","width": "auto"}),
+            #                                         html.Img(id = 'wkndc1',src = weekend_cluster0,style = {"height": "30vh","width": "auto"}),
+            #                                         html.Img(id = 'wkndc4',src = weekend_cluster3,style = {"height": "30vh", "width": "auto"}),
+            #                                         html.Img(id = 'wkndc5',src = weekend_cluster4,style = {"height": "30vh", "width": "auto"}),
+            #                                         html.Img(id = 'wkndc6',src = weekend_cluster5,style = {"height": "30vh", "width": "auto"})],
+            #                              style={'width': '55%',
+            #                                     'height' : '100%',
+            #                                     'display': 'inline-block'}),
+            #                     html.Div(children = [
+            #                                         html.H1('Weekend Clusters'),
+            #                                         cluster_weekend_blurb,
+            #                                         html.H3(' '),
+            #                                         dcc.Graph(id = 'weekend-cluster-graph',
+            #                                         figure = weekend_cluster_map)],
+            #                              style={'width': '43%',
+            #                                     'margin-left' : '2%',
+            #                                     'height' : '100%',
+            #                                     'display': 'inline-block',
+            #                                     'vertical-align': 'top'})
+            #     ]),
+            #
+            #
+            #
+            #    #Rebalancing Times Div
                html.Div(children=[
                                   html.Div(children =[
                                                       html.Img(id = 'rebalancing_times',
@@ -234,10 +234,10 @@ dcc.Tab(label='Rebalancing',
                                                  'display': 'inline-block',
                                                  'vertical-align': 'top'})
                 ]),
-
-
-
-               # Rebalancing Distances Tab
+            #
+            #
+            #
+            #    # Rebalancing Distances Tab
                html.Div(children=[
                                   html.Div(children=[
                                                      html.Img(id = 'rebalancing_distances',

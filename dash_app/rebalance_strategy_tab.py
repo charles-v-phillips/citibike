@@ -9,14 +9,14 @@ from PIL import Image
 legend = Image.open('./data/image/legend.png')
 from dash import dash_table
 
-max_bikes_input = dcc.Input(id = 'max_bikes_input', placeholder = 'Input Max Bikes you can move',type = 'number',value = 500)
+max_bikes_input = dcc.Input(id = 'max_bikes_input', placeholder = 'Input Max Bikes you can move',type = 'number',value = 200)
 min_cargo_size = dcc.Input(id = 'min_cargo_size', placeholder = 'Min Cargo Size', type = 'number',value = 3)
 max_distance = dcc.Input(id='max_distance', placeholder = 'Max Distance',type = 'number',value = 2)
 low_availability_threshold = dcc.Input(id = 'low_availability_threshold', placeholder = 'Low Availability Threshold',type = 'number', value = .333)
 high_availability_threshold = dcc.Input(id = 'high_availability_threshold', placeholder = 'High Availability Threshold',type = 'number',value = .666)
 
 
-predictions = pd.read_csv('./../communal/dataframe_for_live_predictions.csv')
+predictions = pd.read_csv('./data/robert/dataframe_for_live_predictions.csv')
 
 times = [{'label' : date, 'value' : date} for date in predictions['datetime'].unique()]
 
@@ -52,7 +52,7 @@ dcc.Tab(
     value='rebalance_strategy',
     children = [    html.H3(id = 'boop'),
                     html.Div(children = [
-                        html.Div(children = [html.H1('Logistic Strategy',style = {'text-align':'center'}),logistics_blurb],style = {'height': '20vh','width': '40vw','margin-right' : '4vw','display' : 'inline-block'}),
+                        html.Div(children = [html.H1('Logistics Strategy',style = {'text-align':'center'}),logistics_blurb],style = {'height': '20vh','width': '40vw','margin-right' : '4vw','display' : 'inline-block'}),
                         html.Div(children = [html.H1('Machine Learning Model',style = {'text-align':'center'}),ml_blurb],style = {'height': '20vh','width': '40vw','display' : 'inline-block'})]
                     ),
 
