@@ -7,7 +7,7 @@ import pandas as pd
 import plotly.express as px
 
 import layout
-
+from dash import dash_table
 #-------------------- ALGO AREA -----------------------
 from geopy.distance import distance
 import pydeck as pdk
@@ -60,6 +60,7 @@ def update_plot(rollout):
 
 @app.callback(
     Output(component_id='rebalancing_strategy_left_div',component_property = 'children'),
+    Output(component_id = 'table', component_property = 'children'),
     State(component_id='date_input', component_property='value'),
     State(component_id = 'max_bikes_input',component_property='value'),
     State(component_id = 'min_cargo_size',component_property='value'),
@@ -178,7 +179,17 @@ def render_map(date_input, max_bikes_input, min_cargo_size, max_distance, low_av
     rv = dash_deck.DeckGL(r.to_json(),style = {'height' : '100%',"position": 'relative'},
                               id='rebalancing-strategy-graphic',
                               mapboxKey=mapbox_key)
-    return [rv]
+
+    table = rebalancing_df[['dock_name_give', 'dock_name_receive', 'num_bikes']]
+    table = table.rename(columns = {'dock_name_give': 'dock origin', 'dock_name_receive': 'dock destination', 'num_bikes': 'number of bikes'})
+    rv2 = dash_table.DataTable(
+    id = 'whatever',
+    columns = [{'name': i, 'id' : i} for i in table.columns],
+    data = table.to_dict('records')
+    )
+
+
+    return [rv,rv2]
 
     #TODO: need to return a whole ass child here
 

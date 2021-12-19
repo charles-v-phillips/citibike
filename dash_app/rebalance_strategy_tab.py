@@ -7,6 +7,7 @@ import pandas as pd
 from rebalancing_strategy_blurbs import logistics_blurb, ml_blurb, algorithm_blurb
 from PIL import Image
 legend = Image.open('./data/image/legend.png')
+from dash import dash_table
 
 max_bikes_input = dcc.Input(id = 'max_bikes_input', placeholder = 'Input Max Bikes you can move',type = 'number',value = 500)
 min_cargo_size = dcc.Input(id = 'min_cargo_size', placeholder = 'Min Cargo Size', type = 'number',value = 3)
@@ -49,10 +50,10 @@ rebalance_strategy_tab =\
 dcc.Tab(
     label = 'Rebalancing Forecasting Tool',
     value='rebalance_strategy',
-    children = [
+    children = [    html.H3(id = 'boop'),
                     html.Div(children = [
-                        html.Div(children = [html.H1('Logistic Strategy',style = {'text-align':'center'}),'dummy_text'],style = {'height': '30vh','width': '40vw','margin-right' : '4vw','display' : 'inline-block'}),
-                        html.Div(children = [html.H1('Machine Learning Model',style = {'text-align':'center'}),'dummy_text'],style = {'height': '30vh','width': '40vw','display' : 'inline-block'})]
+                        html.Div(children = [html.H1('Logistic Strategy',style = {'text-align':'center'}),logistics_blurb],style = {'height': '20vh','width': '40vw','margin-right' : '4vw','display' : 'inline-block'}),
+                        html.Div(children = [html.H1('Machine Learning Model',style = {'text-align':'center'}),ml_blurb],style = {'height': '20vh','width': '40vw','display' : 'inline-block'})]
                     ),
 
 
@@ -76,8 +77,8 @@ dcc.Tab(
                                                   id = 'rebalancing_strategy_left_div'),
 
                                         html.Div(children =[
-                                                    html.H2('Weekday Rebalancing'),
-                                                    'stupid text'],
+                                                    html.H2('Rebalancing Algorithm'),
+                                                    algorithm_blurb],
                                                  style={'width': '30%',
                                                         'display': 'inline-block',
                                                         'vertical-align': 'top',
@@ -88,6 +89,8 @@ dcc.Tab(
                                 style = {'height' : '45vh','margin-top':'2%'}),
                     html.Img(id = 'leg',
                             src = legend,
-                            style = {'width':'auto', 'height': 100})
+                            style = {'width':'auto', 'height': 100}),
+                    html.Div(children = dash_table.DataTable(id = 'whatever'), id = 'table')
+
                 ]
 )
