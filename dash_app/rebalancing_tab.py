@@ -17,6 +17,8 @@ with open('./data/weekday_rebalancing.json', 'r') as js:
 with open('./data/weekend_rebalancing.json', 'r') as js:
     weekend_rebalanced_plot = json.loads(js.read())
 
+legend = Image.open('./data/image/legend.png')
+
 weekday_cluster0 = Image.open('./data/weekday_cluster_images/weekday_cluster_0.png')
 weekday_cluster1 = Image.open('./data/weekday_cluster_images/weekday_cluster_1.png')
 weekday_cluster2 = Image.open('./data/weekday_cluster_images/weekday_cluster_2.png')
@@ -121,7 +123,9 @@ dcc.Tab(label='Rebalancing',
                         style = {'height' : '45vh','margin-top':'2%'}),
 
 
-
+            html.Img(id = 'legend',
+                    src = legend,
+                    style = {'width':'auto', 'height': 100}),
             #Weekend Rebalancing Div
             html.Div(children=[
                                 html.Div(dash_deck.DeckGL(weekend_rebalanced_plot,
@@ -143,7 +147,9 @@ dcc.Tab(label='Rebalancing',
                      style = {'height' : '45vh','margin-top':'2%'}),
 
 
-
+            html.Img(id = 'legend2',
+                    src = legend,
+                    style = {'width':'auto', 'height': 100}),
             # Weekday Cluster Station Title
             html.H1('Weekday Cluster Stations',style = {'margin-top': '10px'}),
 

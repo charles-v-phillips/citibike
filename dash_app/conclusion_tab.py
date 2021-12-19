@@ -1,5 +1,10 @@
 from dash import dcc, html
+from conclusion_blurbs import conclusion_blurb, next_steps_blurb
+
 conclusion_tab = dcc.Tab(
     label = 'Conclusion',
     value = 'conclusion',
-    children = [html.Div('Bitches be citibiking to the Dunkin Donuts talkin bout "Queen did her cardio for the day" smfh.')])
+    children = [html.H2('Conclusions'),
+                html.Div(conclusion_blurb),
+                html.H2('Next Steps'),
+                html.Div(next_steps_blurb)])

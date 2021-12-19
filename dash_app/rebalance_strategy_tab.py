@@ -4,6 +4,7 @@ import dash_deck
 import requests
 from secrets import mapbox_key
 import pandas as pd
+from rebalancing_strategy_blurbs import logistics_blurb, ml_blurb, algorithm_blurb
 
 max_bikes_input = dcc.Input(id = 'max_bikes_input', placeholder = 'Input Max Bikes you can move')
 min_cargo_size = dcc.Input(id = 'min_cargo_size', placeholder = 'Min Cargo Size')
