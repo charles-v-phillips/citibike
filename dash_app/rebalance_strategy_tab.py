@@ -6,16 +6,16 @@ from secrets import mapbox_key
 import pandas as pd
 from rebalancing_strategy_blurbs import logistics_blurb, ml_blurb, algorithm_blurb
 
-max_bikes_input = dcc.Input(id = 'max_bikes_input', placeholder = 'Input Max Bikes you can move')
-min_cargo_size = dcc.Input(id = 'min_cargo_size', placeholder = 'Min Cargo Size')
-max_distance = dcc.Input(id='max_distance', placeholder = 'Max Distance')
-low_availability_threshold = dcc.Input(id = 'low_availability_threshold', placeholder = 'Low Availibility Threshold')
-high_availibility_threshold = dcc.Input(id = 'high_availability_threshold', placeholder = 'High Availability Threshold')
+max_bikes_input = dcc.Input(id = 'max_bikes_input', placeholder = 'Input Max Bikes you can move',type = 'number',value = 500)
+min_cargo_size = dcc.Input(id = 'min_cargo_size', placeholder = 'Min Cargo Size', type = 'number',value = 3)
+max_distance = dcc.Input(id='max_distance', placeholder = 'Max Distance',type = 'number',value = 2)
+low_availability_threshold = dcc.Input(id = 'low_availability_threshold', placeholder = 'Low Availibility Threshold',type = 'number', value = .666)
+high_availibility_threshold = dcc.Input(id = 'high_availability_threshold', placeholder = 'High Availability Threshold',type = 'number',value = .333)
 
-weather_response = requests.get('https://api.openweathermap.org/data/2.5/onecall?lat=40.7812&lon=-73.9665&exclude=minutely,current,daily,alerts&units=metric&appid=404310456b8e1c31228341dd6c95dd04')
-weather = weather_response.json()
-times  = [{'label' : str(pd.to_datetime(weather['hourly'][i]['dt'],unit = 's')),
-           'value' : str(pd.to_datetime(weather['hourly'][i]['dt'],unit = 's'))} for i in range(len(weather['hourly']))]
+
+predictions = pd.read_csv('./../communal/dataframe_for_live_predictions.csv')
+
+times = [{'label' : date, 'value' : date} for date in predictions['datetime'].unique()]
 
 date_picker = dcc.Dropdown(id = 'date_input', options = times,value = times[0]['value'])
 calculate_button = html.Button('Calculate', id='calculate_button', n_clicks=0)
