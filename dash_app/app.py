@@ -170,8 +170,10 @@ def render_map(date_input, max_bikes_input, min_cargo_size, max_distance, low_av
     view_state = pdk.ViewState(latitude=40.74, longitude=-74, bearing=290, pitch=50, zoom=12)
 
 
-    TOOLTIP_TEXT = {"html": "{num_bikes} bikes need rebalancing from<br />{dock_name_give} to {dock_name_receive}"}
-    r = pdk.Deck(arc_layer, initial_view_state=view_state, tooltip=TOOLTIP_TEXT, map_style = 'light')
+    TOOLTIP_TEXT2 = {"html": "{num_bikes} bikes need rebalancing from<br />{dock_name_give} to {dock_name_receive}"}
+    TOOLTIP_TEXT2 = {"html": "hello?"}
+
+    r = pdk.Deck(arc_layer, initial_view_state=view_state, tooltip=TOOLTIP_TEXT2, map_style = 'light')
 
     rv = dash_deck.DeckGL(r.to_json(),style = {'height' : '100%',"position": 'relative'},
                               id='rebalancing-strategy-graphic',
