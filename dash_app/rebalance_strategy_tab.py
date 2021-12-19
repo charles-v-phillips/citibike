@@ -2,7 +2,7 @@ from dash import dcc, html
 import pydeck as pdk
 import dash_deck
 import requests
-from secrets import mapbox_key
+from secret import mapbox_key
 import pandas as pd
 
 max_bikes_input = dcc.Input(id = 'max_bikes_input', placeholder = 'Input Max Bikes you can move')
