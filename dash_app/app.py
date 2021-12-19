@@ -13,7 +13,7 @@ from geopy.distance import distance
 import pydeck as pdk
 import dash_deck
 from secrets import mapbox_key
-predictions = pd.read_csv('./../communal/dataframe_for_live_predictions.csv')
+predictions = pd.read_csv('./data/robert/dataframe_for_live_predictions.csv')
 new = pd.read_csv('./data/robert/new.csv')
 day_of_week_conversion = {0:2, 1:3, 2:4, 3:5, 4:6, 5:7, 6:1}
 def manhattan_distance(start_lat, start_lon, end_lat, end_lon):
@@ -101,7 +101,7 @@ def render_map(date_input, max_bikes_input, min_cargo_size, max_distance, low_av
     data_high = data_high.sort_values(by = 'surplus', ascending = False)
 
     rebalancing_dict = {}
-    print('are we here?')
+
     low_copy = data_low.copy()
     high_copy = data_high.copy()
     bikes_rebalanced = 0
@@ -124,7 +124,6 @@ def render_map(date_input, max_bikes_input, min_cargo_size, max_distance, low_av
                     rebalancing_dict[stations_key] = change
                 if low_copy.loc[low, 'deficit'] == 0:
                     break
-    print('are we here 2?')
     sorted_rebalancing = dict(sorted(rebalancing_dict.items(), key=lambda x: x[1], reverse = True))
     filtered_rebalancing = {key: value for key, value in sorted_rebalancing.items() if value >= min_cargo_size}
     filtered_bikes_rebalanced = 0
