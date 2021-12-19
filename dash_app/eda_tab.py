@@ -114,22 +114,41 @@ rides_by_minute.update_xaxes(nticks = 14, ticks = 'outside')
 
 ## END NUMBER OF RIDES BY MINUTE
 
-## START TOTAL DAILY Rides
-total_daily_rides_data = pickle.load(open('./data/totaldailyrides.pkl', 'rb'))
+## START TOTAL DAILY RIDES AND NUMBER OF DOCKS BY YEAR
+dailytotal = pickle.load(open('./data/totaldailyrides.pkl', 'rb'))
+yearlytotal = pickle.load(open('./data/numdocksperyear.pkl', 'rb'))
 
-total_daily_rides = px.scatter(total_daily_rides_data,
-              x='newdate',
-              y='numofrides',
-              title="Daily Total Rides",
-              labels = dict(numofrides="Number of Rides", newdate="Date"))
+import plotly.graph_objects as go
+doubletrouble = go.Figure()
 
-total_daily_rides.layout.plot_bgcolor = 'white'
-total_daily_rides.update_traces(marker={'size': 4,
-                          'color': 'dodgerblue'})
-total_daily_rides.update_yaxes(nticks=15, ticks = 'outside', showgrid = False)
-total_daily_rides.update_xaxes(nticks = 15, tickangle=45, ticks = 'outside', showgrid = False)
+doubletrouble.add_trace(
+    go.Scatter(
+        name = 'Daily Total Rides (scaled  x0.01)',
+        x=dailytotal['newdate'],
+        y=dailytotal['numofrides']/100,
+        mode = 'markers',
+        opacity = 1,
+        marker =dict(color='blue', size = 7)
+        )
+    )
 
-## END TOTAL DAILY RIDES
+doubletrouble.add_trace(
+    go.Bar(
+        name = 'Unique Total Docks',
+        x=yearlytotal['year'],
+        y=yearlytotal['count'],
+        opacity = 0.4,
+        marker = dict(color = 'red')
+        )
+    )
+doubletrouble.update_layout(
+    legend=dict(yanchor = "top", y = 0.85, xanchor = "left", x = 0.01),
+    title = 'Citibike On the Come Up',
+    xaxis_title = 'Date (Year)',
+    yaxis_title = 'Count'
+    )
+
+## END TOTAL DAILY RIDES AND NUMBER OF DOCKS BY YEAR
 
 eda_tab = dcc.Tab(label='EDA',
                   value='eda',
@@ -225,10 +244,10 @@ eda_tab = dcc.Tab(label='EDA',
 
                         # #Rides per Day Div
                         html.Div(children = [
-                                        html.Div(dcc.Graph(id='rides_per_day',figure=total_daily_rides,
+                                        html.Div(dcc.Graph(id='doublethang',figure=doubletrouble,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Total Daily Rides'), rides_per_day_blurb],
+                                        html.Div(children = [html.H2('Daily Total Rides'), rides_per_day_blurb],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 
