@@ -12,8 +12,8 @@ from dash import dash_table
 max_bikes_input = dcc.Input(id = 'max_bikes_input', placeholder = 'Input Max Bikes you can move',type = 'number',value = 500)
 min_cargo_size = dcc.Input(id = 'min_cargo_size', placeholder = 'Min Cargo Size', type = 'number',value = 3)
 max_distance = dcc.Input(id='max_distance', placeholder = 'Max Distance',type = 'number',value = 2)
-low_availability_threshold = dcc.Input(id = 'low_availability_threshold', placeholder = 'Low Availability Threshold',type = 'number', value = .666)
-high_availability_threshold = dcc.Input(id = 'high_availability_threshold', placeholder = 'High Availability Threshold',type = 'number',value = .333)
+low_availability_threshold = dcc.Input(id = 'low_availability_threshold', placeholder = 'Low Availability Threshold',type = 'number', value = .333)
+high_availability_threshold = dcc.Input(id = 'high_availability_threshold', placeholder = 'High Availability Threshold',type = 'number',value = .666)
 
 
 predictions = pd.read_csv('./../communal/dataframe_for_live_predictions.csv')
