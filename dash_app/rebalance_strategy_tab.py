@@ -50,13 +50,13 @@ rebalance_strategy_tab =\
 dcc.Tab(
     label = 'Rebalancing Forecasting Tool',
     value='rebalance_strategy',
-    children = [    html.H3(id = 'boop'),
+    children = [
                     html.Div(children = [
-                        html.Div(children = [html.H1('Logistics Strategy',style = {'text-align':'center'}),logistics_blurb],style = {'height': '20vh','width': '40vw','margin-right' : '4vw','display' : 'inline-block'}),
-                        html.Div(children = [html.H1('Machine Learning Model',style = {'text-align':'center'}),ml_blurb],style = {'height': '20vh','width': '40vw','display' : 'inline-block'})]
+                        html.Div(children = [html.H1('Logistics Strategy',style = {'text-align':'center'}),html.Div(logistics_blurb,style = {'font-size':'1vw'})],style = {'height': '20vh','width': '46vw','margin-right' : '4vw','display' : 'inline-block'}),
+                        html.Div(children = [html.H1('Machine Learning Model',style = {'text-align':'center'}),html.Div(ml_blurb,style = {'font-size':'1vw'})],style = {'height': '20vh','width': '46vw','display' : 'inline-block'})]
                     ),
 
-
+                    html.H3(),
                     html.Div(children = [html.H6('Date & Time'),date_picker],style = {'display' : 'inline-block','width' : '20vw'}),
                     html.Div(children = [
                                          html.Div(children = [html.H6('Max Bikes To Move'),max_bikes_input],style = {'display' : 'inline-block'}),
@@ -64,7 +64,7 @@ dcc.Tab(
                                          html.Div(children = [html.H6('Max Distance (miles)'),max_distance],style = {'display' : 'inline-block'}),
                                          html.Div(children = [html.H6('Low Avail. Threshold'),low_availability_threshold],style = {'display' : 'inline-block'}),
                                          html.Div(children = [html.H6('High Avail. Threshold'),high_availability_threshold],style = {'display' : 'inline-block'}),
-                                         html.Div(children = [html.H6('Calculate'),calculate_button],style = {'display' : 'inline-block'})],
+                                         html.Div(children = [html.H6(),calculate_button],style = {'display' : 'inline-block'})],
                               style = {'width': '100vw'}),
 
                     html.Div(children=[
@@ -78,12 +78,12 @@ dcc.Tab(
 
                                         html.Div(children =[
                                                     html.H2('Rebalancing Algorithm'),
-                                                    algorithm_blurb],
+                                                    html.Div(algorithm_blurb,style = {'font-size':'1vw'})],
                                                  style={'width': '30%',
                                                         'display': 'inline-block',
                                                         'vertical-align': 'top',
                                                         'margin-left': '4%',
-                                                        "maxHeight": "400px",
+                                                        # "maxHeight": "400px",
                                                         "overflow": "scroll"})
                                         ],
                                 style = {'height' : '45vh','margin-top':'2%'}),
