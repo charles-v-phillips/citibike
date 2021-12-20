@@ -236,7 +236,7 @@ eda_tab = dcc.Tab(label='EDA',
                                                 figure=usage_trend_plot,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('CitiBike Usage Patters'), html.Div(usage_plot_blurb,style = {'font-size': '1vw'})],
+                                        html.Div(children = [html.H2('CitiBike Usage Patterns'), html.Div(usage_plot_blurb,style = {'font-size': '1vw'})],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 

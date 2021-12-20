@@ -14,5 +14,4 @@ next_steps_blurb = dcc.Markdown('''
 2. Dock availability data stopped being publicly available in 2019 and was only on hourly basis
 3. Do not have CitiBike operational information on current rebalancing strategy and staffing capacity/budget for bike rebalancing
 4. Difficult to train ML models on full dataset without Cloud Computing
-4. Lack computation capacity to calculate optimal rebalance (bikes and availability are constantly changing in real time)
 ''')
