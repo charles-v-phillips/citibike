@@ -99,7 +99,7 @@ cluster_tab = dcc.Tab(label = 'Station Usage Patterns',value = 'station_usage',
 
                             html.Div(children = [
                                                 html.H1('Weekday Clusters'),
-                                                cluster_weekday_blurb,
+                                                html.Div(cluster_weekday_blurb,style = {'font-size':'1vw'}),
                                                 html.H3(' '),
                                                 dcc.Graph(id = 'weekday-cluster-graph',
                                                           figure = weekday_cluster_map)],
@@ -131,7 +131,7 @@ cluster_tab = dcc.Tab(label = 'Station Usage Patterns',value = 'station_usage',
                                             'display': 'inline-block'}),
                             html.Div(children = [
                                                 html.H1('Weekend Clusters'),
-                                                cluster_weekend_blurb,
+                                                html.Div(cluster_weekend_blurb,style = {'font-size':'1vw'}),
                                                 html.H3(' '),
                                                 dcc.Graph(id = 'weekend-cluster-graph',
                                                 figure = weekend_cluster_map)],

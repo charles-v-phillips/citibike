@@ -61,7 +61,7 @@ dcc.Tab(
                     html.Div(children = [
                                          html.Div(children = [html.H6('Max Bikes To Move'),max_bikes_input],style = {'display' : 'inline-block'}),
                                          html.Div(children = [html.H6('Min Cargo Size'),min_cargo_size],style = {'display' : 'inline-block'}),
-                                         html.Div(children = [html.H6('Max Distance'),max_distance],style = {'display' : 'inline-block'}),
+                                         html.Div(children = [html.H6('Max Distance (miles)'),max_distance],style = {'display' : 'inline-block'}),
                                          html.Div(children = [html.H6('Low Avail. Threshold'),low_availability_threshold],style = {'display' : 'inline-block'}),
                                          html.Div(children = [html.H6('High Avail. Threshold'),high_availability_threshold],style = {'display' : 'inline-block'}),
                                          html.Div(children = [html.H6('Calculate'),calculate_button],style = {'display' : 'inline-block'})],

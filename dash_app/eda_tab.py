@@ -13,15 +13,32 @@ pop_data = pickle.load(open('./data/pop_data.pkl', 'rb')) # population density d
 with open('./data/N_Areas.geojson', 'r') as j: # shape file for neighborhood boundaries, needed for population density plot
     boundaries = json.loads(j.read())
 
-pop_density =px.choropleth_mapbox(pop_data,
-                          geojson=boundaries,
-                          locations = 'Neighborhood Tabulation Area Code (NTA Code)',
-                           featureidkey="properties.ntacode",
-                          color = 'Population Density (per Sq. Mi.)',
-                           center={"lat": 40.77, "lon": -73.79},
-                          mapbox_style="carto-positron")
+
+pop_density = go.Figure(go.Choroplethmapbox(geojson=boundaries,
+                                     featureidkey='properties.ntacode',
+                                       locations=pop_data['Neighborhood Tabulation Area Code (NTA Code)'],
+                                       z=pop_data['Population Density (per Sq. Mi.)'],
+                                       zmin = 0,
+                                       zmax = 100000,
+                                       colorscale="Blues",
+                                       # marker_opacity=0.5,
+                                       marker_line_width=0))
+pop_density.update_layout(mapbox_style="carto-positron",
+                  mapbox_zoom=10, mapbox_center = {"lat": 40.747673, "lon" : -73.951292})
 pop_density.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-pop_density.layout.coloraxis.colorbar.title = ''
+# pop_density =px.choropleth_mapbox(pop_data,
+#                           geojson=boundaries,
+#                           locations = 'Neighborhood Tabulation Area Code (NTA Code)',
+#                            featureidkey="properties.ntacode",
+#                           color = 'Population Density (per Sq. Mi.)',
+#                            # center={"lat": 40.77, "lon": -73.79},
+#                            center = {"lat": 40.747673, "lon" : -73.951292},
+#                            zoom = 10,
+#                           mapbox_style="carto-positron")
+# pop_density.update_traces(zmin=0,zmax = 140000)
+# pop_density.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+# pop_density.layout.coloraxis.colorbar.title = ''
+
 # pop_density.update_traces(legendgrouptitle = dict(text = 'work?'))
 
 ## END POPULATION DENSITY GRAPHIC CHUNK ---------------------------
@@ -156,6 +173,7 @@ eda_tab = dcc.Tab(label='EDA',
 
                   html.Div(children = [
                                     #Rollout Map Div
+                                html.H4(),
                                   html.Div(children = [dcc.Slider(
                                           id='slider',
                                           marks={i: '{}'.format(i) for i in range(2013, 2022)},
@@ -165,7 +183,7 @@ eda_tab = dcc.Tab(label='EDA',
                                       ),dcc.Graph(id='rollout_map',
                                           style = {'height' : '100%'})],
                                           style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                  html.Div(children = [html.H2('CitiBike Rollout Plan'), rollout_clusters_blurb],
+                                  html.Div(children = [html.H2('CitiBike Rollout Plan'), html.Div(rollout_clusters_blurb,style = {'font-size': '1vw'})],
                                                   style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                   style = {'height' : '80vh'}),
 
@@ -189,7 +207,7 @@ eda_tab = dcc.Tab(label='EDA',
                                                 figure=pop_density,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Population Density in NYC'), pop_density_blurb],
+                                        html.Div(children = [html.H2('Population Density in NYC'), html.Div(pop_density_blurb,style = {'font-size': '1vw'})],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '80vh','margin-top':'10px'}),
 
@@ -202,7 +220,7 @@ eda_tab = dcc.Tab(label='EDA',
                                                 figure = transit_locations,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Transit Locations in NYC'), transit_location_blurb],
+                                        html.Div(children = [html.H2('Transit Locations in NYC'), html.Div(transit_location_blurb,style = {'font-size': '1vw'})],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '80vh','margin-top':'10px'}),
 
@@ -218,7 +236,7 @@ eda_tab = dcc.Tab(label='EDA',
                                                 figure=usage_trend_plot,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('CitiBike Usage Patters'), usage_plot_blurb],
+                                        html.Div(children = [html.H2('CitiBike Usage Patters'), html.Div(usage_plot_blurb,style = {'font-size': '1vw'})],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 
@@ -229,7 +247,7 @@ eda_tab = dcc.Tab(label='EDA',
                                                 figure=rides_per_year,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Annual Total Rides'), rides_per_year_blurb],
+                                        html.Div(children = [html.H2('Annual Total Rides'), html.Div(rides_per_year_blurb, style = {'font-size':'1vw'})],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 
@@ -238,7 +256,7 @@ eda_tab = dcc.Tab(label='EDA',
                                         html.Div(dcc.Graph(id='rides_per_month',figure=rides_per_month,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Total Monthly Rides'), rides_per_month_blurb],
+                                        html.Div(children = [html.H2('Total Monthly Rides'), html.Div(rides_per_month_blurb,style = {'font-size':'1vw'})],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 
@@ -247,7 +265,7 @@ eda_tab = dcc.Tab(label='EDA',
                                         html.Div(dcc.Graph(id='doublethang',figure=doubletrouble,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Daily Total Rides'), rides_per_day_blurb],
+                                        html.Div(children = [html.H2('Daily Total Rides'), html.Div(rides_per_day_blurb,style = {'font-size':'1vw'})],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 
@@ -256,7 +274,7 @@ eda_tab = dcc.Tab(label='EDA',
                                         html.Div(dcc.Graph(id='num_of_rides_by_minute', figure = rides_by_minute,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Rides by Minute'), ride_per_minute_blurb],
+                                        html.Div(children = [html.H2('Rides by Minute'), html.Div(ride_per_minute_blurb,style = {'font-size':'1vw'})],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 ])

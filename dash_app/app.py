@@ -5,7 +5,7 @@ from dash.dependencies import Input, Output, State
 
 import pandas as pd
 import plotly.express as px
-
+import numpy as np
 import layout
 from dash import dash_table
 #-------------------- ALGO AREA -----------------------
@@ -53,8 +53,11 @@ def update_plot(rollout):
                             color='rollout_cluster',
                             mapbox_style='carto-positron',
                             zoom=11,
+                            # size = pd.Series(np.ones(len(copy))*.3),
+                            # size_max = .5,
                             center=dict(lat=40.76421, lon=-73.95623)
                             )
+
     return [map]
 
 
@@ -183,8 +186,10 @@ def render_map(date_input, max_bikes_input, min_cargo_size, max_distance, low_av
     table = table.rename(columns = {'dock_name_give': 'dock origin', 'dock_name_receive': 'dock destination', 'num_bikes': 'number of bikes'})
     rv2 = dash_table.DataTable(
     id = 'whatever',
+    data = table.to_dict('records'),
     columns = [{'name': i, 'id' : i} for i in table.columns],
-    data = table.to_dict('records')
+    style_header={ 'border': '1px solid black' },
+    style_cell={ 'border': '1px solid grey' },
     )
 
 

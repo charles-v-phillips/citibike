@@ -9,6 +9,7 @@ intro_tab = dcc.Tab(label = 'Project Introduction',
                     children = [
                     html.H1('Project Description'),
                     html.Div(project_blurb),
+                    html.H1(),
                     html.H1('Data Description'),
                     html.Div(data_blurb),
                     html.Img(id = 'pic1',
