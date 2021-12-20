@@ -26,8 +26,8 @@ weekday_cluster_map = px.scatter_mapbox(frame_for_weekday_cluster_map,
                                                                  'rgba(0,0,128,1)','rgba(128,0,0,1)',
                                                                  'rgba(60,180,75,1)','rgba(220,190,255,1)','rgba(128,128,128,1)' ],
                                         category_orders = {'cluster':['1','2','3','4','5','6','7']},
-                                        zoom = 10,
-                                        center = dict(lat = 40.76421, lon = -73.95623)
+                                        zoom = 10.5,
+                                        center = dict(lat = 40.744789, lon = -73.913028)
                  )
 weekday_cluster_map.update_layout(margin={"r":0,"t":0,"l":0,"b":0},
                                   legend=dict(
@@ -38,6 +38,7 @@ weekday_cluster_map.update_layout(margin={"r":0,"t":0,"l":0,"b":0},
                                       orientation = 'h'
                               )
                               )
+weekday_cluster_map.update_traces(marker={'size': 9})
 
 frame_for_weekend_cluster_map = pd.read_csv('./data/frame_for_weekend_cluster_map.csv')
 frame_for_weekend_cluster_map['cluster'] = frame_for_weekend_cluster_map['cluster'].astype(str)
@@ -54,8 +55,8 @@ weekend_cluster_map = px.scatter_mapbox(frame_for_weekend_cluster_map,
                                                                  'rgba(30,128,150,1)',
                                                                  'rgba(145,50,180,1)'],
                                         category_orders = {'cluster':['1','2','3','4','5','6']},
-                                        zoom = 10,
-                                        center = dict(lat = 40.76421, lon = -73.95623),
+                                        zoom = 10.5,
+                                        center = dict(lat = 40.744789, lon = -73.913028),
                                         )
 
 weekend_cluster_map.update_layout(margin={"r":0,"t":0,"l":0,"b":0},
@@ -66,7 +67,7 @@ weekend_cluster_map.update_layout(margin={"r":0,"t":0,"l":0,"b":0},
                                               orientation = 'h')
                                   )
 
-
+weekend_cluster_map.update_traces(marker={'size': 9})
 
 weekend_cluster0 = Image.open('./data/weekend_cluster_images/weekend_cluster_0.png')
 weekend_cluster1 = Image.open('./data/weekend_cluster_images/weekend_cluster_1.png')
@@ -133,8 +134,9 @@ cluster_tab = dcc.Tab(label = 'Station Usage Patterns',value = 'station_usage',
                                                 html.H1('Weekend Clusters'),
                                                 html.Div(cluster_weekend_blurb,style = {'font-size':'1vw'}),
                                                 html.H3(' '),
-                                                dcc.Graph(id = 'weekend-cluster-graph',
-                                                figure = weekend_cluster_map)],
+                                                dcc.Graph(id = 'weekend-cluster-graph',figure = weekend_cluster_map)
+
+                                                ],
                                      style={'width': '43%',
                                             'margin-left' : '2%',
                                             'height' : '100%',

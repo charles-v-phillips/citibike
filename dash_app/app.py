@@ -57,6 +57,7 @@ def update_plot(rollout):
                             # size_max = .5,
                             center=dict(lat=40.76421, lon=-73.95623)
                             )
+    map.update_traces(marker={'size': 10})
 
     return [map]
 
