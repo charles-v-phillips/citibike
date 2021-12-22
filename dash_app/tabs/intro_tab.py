@@ -1,5 +1,5 @@
 from dash import dcc, html
-from project_info_blurbs import project_blurb, data_blurb
+from blurbs.project_info_blurbs import project_blurb, data_blurb
 from PIL import Image
 
 cb_photo = Image.open('./data/image/pic1.jpg')

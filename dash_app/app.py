@@ -2,12 +2,13 @@
 #-------------------- PACKAGES -------------------------
 import dash
 from dash.dependencies import Input, Output, State
-
-import pandas as pd
+from dash import dash_table
 import plotly.express as px
+import pandas as pd
+
 import numpy as np
 import layout
-from dash import dash_table
+
 #-------------------- ALGO AREA -----------------------
 from geopy.distance import distance
 import pydeck as pdk
@@ -53,8 +54,6 @@ def update_plot(rollout):
                             color='rollout_cluster',
                             mapbox_style='carto-positron',
                             zoom=11,
-                            # size = pd.Series(np.ones(len(copy))*.3),
-                            # size_max = .5,
                             center=dict(lat=40.76421, lon=-73.95623)
                             )
     map.update_traces(marker={'size': 10})
@@ -196,7 +195,6 @@ def render_map(date_input, max_bikes_input, min_cargo_size, max_distance, low_av
 
     return [rv,rv2]
 
-    #TODO: need to return a whole ass child here
 
 
 

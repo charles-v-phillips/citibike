@@ -5,7 +5,7 @@ import json
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
-from eda_blurbs import rollout_clusters_blurb, pop_density_blurb, transit_location_blurb, usage_plot_blurb, ride_per_minute_blurb, rides_per_month_blurb, rides_per_year_blurb, rides_per_day_blurb
+from blurbs.eda_blurbs import rollout_clusters_blurb, pop_density_blurb, transit_location_blurb, usage_plot_blurb, ride_per_minute_blurb, rides_per_month_blurb, rides_per_year_blurb, rides_per_day_blurb
 
 ## START POPULATION DENSITY GRAPHIC --------------------------
 pop_data = pickle.load(open('./data/pop_data.pkl', 'rb')) # population density data frame
@@ -21,25 +21,10 @@ pop_density = go.Figure(go.Choroplethmapbox(geojson=boundaries,
                                        zmin = 0,
                                        zmax = 100000,
                                        colorscale="Blues",
-                                       # marker_opacity=0.5,
                                        marker_line_width=0))
 pop_density.update_layout(mapbox_style="carto-positron",
                   mapbox_zoom=10, mapbox_center = {"lat": 40.747673, "lon" : -73.951292})
 pop_density.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-# pop_density =px.choropleth_mapbox(pop_data,
-#                           geojson=boundaries,
-#                           locations = 'Neighborhood Tabulation Area Code (NTA Code)',
-#                            featureidkey="properties.ntacode",
-#                           color = 'Population Density (per Sq. Mi.)',
-#                            # center={"lat": 40.77, "lon": -73.79},
-#                            center = {"lat": 40.747673, "lon" : -73.951292},
-#                            zoom = 10,
-#                           mapbox_style="carto-positron")
-# pop_density.update_traces(zmin=0,zmax = 140000)
-# pop_density.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-# pop_density.layout.coloraxis.colorbar.title = ''
-
-# pop_density.update_traces(legendgrouptitle = dict(text = 'work?'))
 
 ## END POPULATION DENSITY GRAPHIC CHUNK ---------------------------
 
@@ -50,7 +35,6 @@ transit_locations = px.scatter_mapbox(dock_train_bus_df,
                 lon = 'longitude',
                  color = 'type',
                  mapbox_style = 'carto-positron',
-                  #color_continuous_scale=['pink','red','orange', 'yellow' 'green', 'blue','purple' ,'grey','black'],
                   zoom = 10,
                   center = dict(lat = 40.76421, lon = -73.95623)
                  )
@@ -189,18 +173,6 @@ eda_tab = dcc.Tab(label='EDA',
 
 
 
-
-
-
-                    # dcc.Slider(
-                    #         id='slider',
-                    #         marks={i: '{}'.format(i) for i in range(1, 10)},
-                    #         min=1,
-                    #         max=9,
-                    #         value=1,
-                    #     ),
-                        # dcc.Graph(id='rollout_map'),
-                        #
                         #Pop Density Div
                         html.Div(children = [
                                         html.Div(dcc.Graph(id='pop_density' ,
@@ -223,10 +195,6 @@ eda_tab = dcc.Tab(label='EDA',
                                         html.Div(children = [html.H2('Transit Locations in NYC'), html.Div(transit_location_blurb,style = {'font-size': '1vw'})],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '80vh','margin-top':'10px'}),
-
-
-
-
 
 
 

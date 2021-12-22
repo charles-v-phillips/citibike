@@ -1,5 +1,5 @@
 from dash import dcc, html
-from conclusion_blurbs import conclusion_blurb, next_steps_blurb
+from blurbs.conclusion_blurbs import conclusion_blurb, next_steps_blurb
 
 conclusion_tab = dcc.Tab(
     label = 'Conclusions',

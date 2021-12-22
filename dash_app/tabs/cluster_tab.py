@@ -4,8 +4,11 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 from dash import dcc, html
-from rebalance_blurbs import cluster_weekday_blurb,cluster_weekend_blurb,rebalance_time_blurb,rebalance_dist_blurb,rebalance_3d_weekday_blurb,rebalance_3d_weekend_blurb
+from blurbs.rebalance_blurbs import cluster_weekday_blurb, cluster_weekend_blurb, rebalance_time_blurb,\
+rebalance_dist_blurb, rebalance_3d_weekday_blurb,rebalance_3d_weekend_blurb
 
+
+#------------------------------ Weekday Cluster Images ------------------------------
 weekday_cluster0 = Image.open('./data/weekday_cluster_images/weekday_cluster_0.png')
 weekday_cluster1 = Image.open('./data/weekday_cluster_images/weekday_cluster_1.png')
 weekday_cluster2 = Image.open('./data/weekday_cluster_images/weekday_cluster_2.png')
@@ -14,9 +17,16 @@ weekday_cluster4 = Image.open('./data/weekday_cluster_images/weekday_cluster_4.p
 weekday_cluster5 = Image.open('./data/weekday_cluster_images/weekday_cluster_5.png')
 weekday_cluster6 = Image.open('./data/weekday_cluster_images/weekday_cluster_6.png')
 
+
+
+
+#------------------------------ Weekday Cluster DataFrame------------------------------
 frame_for_weekday_cluster_map = pd.read_csv('./data/frame_for_weekday_cluster_map.csv')
 frame_for_weekday_cluster_map['cluster'] = frame_for_weekday_cluster_map['cluster'].astype(str)
 
+
+
+#------------------------------ Weekday Cluster DataFrame------------------------------
 weekday_cluster_map = px.scatter_mapbox(frame_for_weekday_cluster_map,
                                         lat = 'lat',
                                         lon = 'lon',
@@ -40,20 +50,28 @@ weekday_cluster_map.update_layout(margin={"r":0,"t":0,"l":0,"b":0},
                               )
 weekday_cluster_map.update_traces(marker={'size': 9})
 
+
+#------------------------------ Weekend Cluster Images------------------------------
+weekend_cluster0 = Image.open('./data/weekend_cluster_images/weekend_cluster_0.png')
+weekend_cluster1 = Image.open('./data/weekend_cluster_images/weekend_cluster_1.png')
+weekend_cluster2 = Image.open('./data/weekend_cluster_images/weekend_cluster_2.png')
+weekend_cluster3 = Image.open('./data/weekend_cluster_images/weekend_cluster_3.png')
+weekend_cluster4 = Image.open('./data/weekend_cluster_images/weekend_cluster_4.png')
+weekend_cluster5 = Image.open('./data/weekend_cluster_images/weekend_cluster_5.png')
+
+#------------------------------ Weekend Cluster DataFrame ------------------------------
 frame_for_weekend_cluster_map = pd.read_csv('./data/frame_for_weekend_cluster_map.csv')
 frame_for_weekend_cluster_map['cluster'] = frame_for_weekend_cluster_map['cluster'].astype(str)
 
+#------------------------------ Weekend Cluster Map------------------------------
 weekend_cluster_map = px.scatter_mapbox(frame_for_weekend_cluster_map,
                                         lat = 'lat',
                                         lon = 'lon',
                                         color = 'cluster',
                                         mapbox_style = 'carto-positron',
-                                        color_discrete_sequence=['rgba(204, 27, 14,1)',
-                                                                 'rgba(245,130,48,1)',
-                                                                 'rgba(0,0,128,1)',
-                                                                 'rgba(32,64,64,1)',
-                                                                 'rgba(30,128,150,1)',
-                                                                 'rgba(145,50,180,1)'],
+                                        color_discrete_sequence=['rgba(204, 27, 14,1)','rgba(245,130,48,1)',
+                                                                 'rgba(0,0,128,1)','rgba(32,64,64,1)',
+                                                                 'rgba(30,128,150,1)','rgba(145,50,180,1)'],
                                         category_orders = {'cluster':['1','2','3','4','5','6']},
                                         zoom = 10.5,
                                         center = dict(lat = 40.744789, lon = -73.913028),
@@ -69,12 +87,7 @@ weekend_cluster_map.update_layout(margin={"r":0,"t":0,"l":0,"b":0},
 
 weekend_cluster_map.update_traces(marker={'size': 9})
 
-weekend_cluster0 = Image.open('./data/weekend_cluster_images/weekend_cluster_0.png')
-weekend_cluster1 = Image.open('./data/weekend_cluster_images/weekend_cluster_1.png')
-weekend_cluster2 = Image.open('./data/weekend_cluster_images/weekend_cluster_2.png')
-weekend_cluster3 = Image.open('./data/weekend_cluster_images/weekend_cluster_3.png')
-weekend_cluster4 = Image.open('./data/weekend_cluster_images/weekend_cluster_4.png')
-weekend_cluster5 = Image.open('./data/weekend_cluster_images/weekend_cluster_5.png')
+
 
 rebalancing_times = Image.open('./data/robert/phantom_rides_time_of_day.png')
 rebalancing_distances = Image.open('./data/robert/phantom_rides_distances.png')
@@ -87,6 +100,7 @@ cluster_tab = dcc.Tab(label = 'Station Usage Patterns',value = 'station_usage',
 
         # Weekday Cluster Div
         html.Div(children =[
+                            # Left sub div
                             html.Div(children = [
                                                 html.Img(id = 'c3',src = weekday_cluster2,style = {"height": "30vh", "width": "auto"}),
                                                 html.Img(id = 'c2',src = weekday_cluster1,style = {"height": "30vh","width": "auto"}),
@@ -98,6 +112,7 @@ cluster_tab = dcc.Tab(label = 'Station Usage Patterns',value = 'station_usage',
                                                 ],
                                     style={'width': '55%','height' : '100%', 'display': 'inline-block'}),
 
+                            # Right sub div
                             html.Div(children = [
                                                 html.H1('Weekday Clusters'),
                                                 html.Div(cluster_weekday_blurb,style = {'font-size':'1vw'}),
@@ -120,6 +135,7 @@ cluster_tab = dcc.Tab(label = 'Station Usage Patterns',value = 'station_usage',
 
         # Weekday Cluster Div
         html.Div(children=[
+                            # Left sub div
                             html.Div(children=[
                                                 html.Img(id = 'wkndc3',src = weekend_cluster2,style = {"height": "30vh", "width": "auto"}),
                                                 html.Img(id = 'wkndc2',src = weekend_cluster1,style = {"height": "30vh","width": "auto"}),
@@ -130,6 +146,7 @@ cluster_tab = dcc.Tab(label = 'Station Usage Patterns',value = 'station_usage',
                                      style={'width': '55%',
                                             'height' : '100%',
                                             'display': 'inline-block'}),
+                            # Right sub div
                             html.Div(children = [
                                                 html.H1('Weekend Clusters'),
                                                 html.Div(cluster_weekend_blurb,style = {'font-size':'1vw'}),
@@ -143,12 +160,4 @@ cluster_tab = dcc.Tab(label = 'Station Usage Patterns',value = 'station_usage',
                                             'display': 'inline-block',
                                             'vertical-align': 'top'})
             ])
-
-
-
-
-
-
-
-
         ])

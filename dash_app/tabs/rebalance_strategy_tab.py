@@ -4,7 +4,7 @@ import dash_deck
 import requests
 from secrets import mapbox_key
 import pandas as pd
-from rebalancing_strategy_blurbs import logistics_blurb, ml_blurb, algorithm_blurb
+from blurbs.rebalancing_strategy_blurbs import logistics_blurb, ml_blurb, algorithm_blurb
 from PIL import Image
 legend = Image.open('./data/image/legend.png')
 from dash import dash_table
@@ -23,28 +23,6 @@ times = [{'label' : date, 'value' : date} for date in predictions['datetime'].un
 date_picker = dcc.Dropdown(id = 'date_input', options = times,value = times[0]['value'])
 calculate_button = html.Button('Calculate', id='calculate_button', n_clicks=0)
 
-
-# BLUE_RGB = [0, 59, 112, 90]
-# RED_RGB = [217, 38, 28, 90]
-# arc_layer = pdk.Layer(
-#     "ArcLayer",
-#     # data = weekday_grouped[:300],
-#     # get_source_position=['end_lon','end_lat'],
-#     # get_target_position = ['next_lon','next_lat'],
-#     get_tilt=15,
-#     get_source_color=RED_RGB,
-#     get_target_color=BLUE_RGB,
-#     pickable=True,
-#     auto_highlight=True,
-#     # get_width = 'count/700'
-#     )
-#
-# view_state = pdk.ViewState(latitude = 40.778786,longitude = -73.974785, bearing=45, pitch=50, zoom=11,)
-# # latitude = 40.778786,longitude = -73.974785
-#
-# TOOLTIP_TEXT = {"html": "{count} bikes moved from {end_station}<br />\
-#                 to {next_station}Home of commuter in red; work location in green"}
-# r = pdk.Deck(arc_layer, initial_view_state=view_state, tooltip=TOOLTIP_TEXT,map_style = 'light')
 
 rebalance_strategy_tab =\
 dcc.Tab(
@@ -83,7 +61,6 @@ dcc.Tab(
                                                         'display': 'inline-block',
                                                         'vertical-align': 'top',
                                                         'margin-left': '4%',
-                                                        # "maxHeight": "400px",
                                                         "overflow": "scroll"})
                                         ],
                                 style = {'height' : '45vh','margin-top':'2%'}),
