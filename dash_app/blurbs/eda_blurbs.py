@@ -1,8 +1,13 @@
-rollout_clusters_blurb = '''Based on Citi Bike’s expansion plan there were 3 official dock rollout phases. For visualization purposes we grouped the rollouts by the year each station first appeared in the dataset. The figure shows 8 rollout clusters (each year from 2013-2021). The first stations were placed in Midtown Manhattan, Downtown Manhattan, and Downtown Brooklyn. The next phase continued to Uptown Manhattan, continued to disperse around Downtown Brooklyn, and the first Queens stations were installed in Long Island City. From there, Manhattan docks continued to expand further uptown to Harlem and the Brooklyn and Queens docks continued to expand further away from Downtown Brooklyn and Long Island City, respectively. The final cluster expanded into the Bronx and continued the geographic spread of Brooklyn and Queens.
-
-Based on the expansion stages observed, it is hypothesized that the rollout strategy prioritized the central business districts of Downtown Manhattan, Midtown Manhattan, Downtown Brooklyn and Long Island City, and then planned to expand outward keeping a continuous network of docks at all times.
+from dash import dcc
+rollout_clusters_blurb = dcc.Markdown( '''
+Based on Citi Bike’s expansion plan there were 3 official dock rollout phases. 
+The figure shows the dock rollout by year from 2013-2021. 
+In 2013, stations were placed in Midtown Manhattan, Downtown Manhattan, and Downtown Brooklyn. 
+In 2015, expansion continued to Uptown Manhattan, continued to disperse around Downtown Brooklyn, and the first Queens stations were installed in Long Island City. 
+In 2017, Manhattan docks spread further uptown to Harlem and the Brooklyn and Queens docks continued to expand further away from Downtown Brooklyn and Long Island City, respectively. 
+In 2020, the dock network extended into the Bronx and continued the geographic spread of Brooklyn and Queens.
 '''
-
+)
 pop_density_blurb = '''To better understand Citi Bike’s choice of the initial rollout, we investigated the Population Density of NYC. This information was taken from the New York Master Plan from 2021 available on NYC Open Data. We assumed the population density stayed relatively consistent over the time period from 2013-2021. From the map, we see that downtown Manhattan is quite populated, and so is downtown Brooklyn. This is a likely driving force for the locations chosen in the initial rollout phases.'''
 
 transit_location_blurb = '''Based on the motivation of bikeshare to solve the ‘last mile’ of transportation, Citi Bike likely prioritized dock locations in the vicinity of public transit hubs. The figure shows dock locations plotted with subway stations and bus stops. In nearly all cases there is a dock within 1 block of each subway station and bus stop.'''
