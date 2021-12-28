@@ -5,7 +5,7 @@ import json
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
-from blurbs.eda_blurbs import rollout_clusters_blurb, pop_density_blurb, transit_location_blurb, usage_plot_blurb, ride_per_minute_blurb, rides_per_month_blurb, rides_per_year_blurb, rides_per_day_blurb
+from blurbs.eda_blurbs import rollout_clusters_blurb, pop_density_blurb, transit_location_blurb, usage_plot_blurb, ride_per_minute_blurb, rides_per_month_blurb, rides_per_year_blurb, rides_per_day_blurb, eda_intro_blurb
 
 ## START POPULATION DENSITY GRAPHIC --------------------------
 pop_data = pickle.load(open('./data/pop_data.pkl', 'rb')) # population density data frame
@@ -144,17 +144,20 @@ doubletrouble.add_trace(
     )
 doubletrouble.update_layout(
     legend=dict(yanchor = "top", y = 0.85, xanchor = "left", x = 0.01),
-    title = 'Citibike On the Come Up',
+    title = 'Daily Total Rides vs. Docks',
     xaxis_title = 'Date (Year)',
     yaxis_title = 'Count'
     )
 
 ## END TOTAL DAILY RIDES AND NUMBER OF DOCKS BY YEAR
 
-eda_tab = dcc.Tab(label='EDA',
+eda_tab = dcc.Tab(label='Data Analysis',
                   value='eda',
                   children = [
 
+                  html.H2('EDA Introduction', style={'textAlign': 'center'}),
+                  html.Div(eda_intro_blurb, style = {'font-size': '1vw', 'textAlign': 'center'}),
+                  html.H1(' '),
                   html.Div(children = [
                                     #Rollout Map Div
                                 html.H4(),
@@ -242,7 +245,7 @@ eda_tab = dcc.Tab(label='EDA',
                                         html.Div(dcc.Graph(id='num_of_rides_by_minute', figure = rides_by_minute,
                                                 style = {'height' : '100%'}),
                                                 style={'width': '60%','height' : '100%', 'display': 'inline-block'}),
-                                        html.Div(children = [html.H2('Rides by Minute'), html.Div(ride_per_minute_blurb,style = {'font-size':'1vw'})],
+                                        html.Div(children = [html.H2('Trip Duration'), html.Div(ride_per_minute_blurb,style = {'font-size':'1vw'})],
                                                         style={'width': '30%', 'display': 'inline-block','vertical-align': 'top','margin-left': '9%'})],
                                                         style = {'height' : '40vh','margin-top':'10px'}),
 ])

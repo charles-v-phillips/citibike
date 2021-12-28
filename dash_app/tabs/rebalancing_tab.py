@@ -123,9 +123,8 @@ dcc.Tab(label='Current Rebalancing',
                         style = {'height' : '45vh','margin-top':'2%'}),
 
 
-            html.Img(id = 'legend',
-                    src = legend,
-                    style = {'width':'auto', 'height': 100}),
+            html.Div('*For each arc, the bike starts at the green side and move to the red side'),
+            html.Div('**Arc thickness is proportional to quantities of bikes moved'),
             #Weekend Rebalancing Div
             html.Div(children=[
                                 html.Div(dash_deck.DeckGL(weekend_rebalanced_plot,
@@ -147,9 +146,8 @@ dcc.Tab(label='Current Rebalancing',
                      style = {'height' : '45vh','margin-top':'2%'}),
 
 
-            html.Img(id = 'legend2',
-                    src = legend,
-                    style = {'width':'auto', 'height': 100}),
+            html.Div('*For each arc, the bike starts at the green side and move to the red side'),
+            html.Div('**Arc thickness is proportional to quantities of bikes moved'),
             # Weekday Cluster Station Title
             # html.H1('Weekday Cluster Stations',style = {'margin-top': '10px'}),
             #

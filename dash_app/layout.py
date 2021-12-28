@@ -21,9 +21,10 @@ tabs = dcc.Tabs(id="tabs-example-graph", children=[intro_tab,
                                                     value='intro')
 
 layout = html.Div([
-    html.Img(id='citi_bike_logo',src = citi_bike_logo,
-                style = {"width": "40%",
-                        "height": "auto"}),
+    #html.Img(id='citi_bike_logo',src = citi_bike_logo,
+                #style = {"width": "40%",
+                        #"height": "auto"}),
+    html.H1('Citi Bike Capstone Project'),
     tabs,
     html.Div(id='tabs-content-example-graph'),
 
