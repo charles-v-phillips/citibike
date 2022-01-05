@@ -30,7 +30,7 @@ dcc.Tab(
     value='rebalance_strategy',
     children = [
                     html.Div(children = [
-                        html.Div(children = [html.H1('Logistics Strategy',style = {'text-align':'center'}),html.Div(logistics_blurb,style = {'font-size':'1vw'})],style = {'height': '20vh','width': '46vw','margin-right' : '4vw','display' : 'inline-block'}),
+                        html.Div(children = [html.H1('Logistics Strategy',style = {'text-align':'center'}),html.Div(logistics_blurb,style = {'font-size':'1vw'})],style = {'height': '20vh','width': '46vw','margin-right' : '4vw','display' : 'inline-block','vertical-align': 'top'}),
                         html.Div(children = [html.H1('Machine Learning Model',style = {'text-align':'center'}),html.Div(ml_blurb,style = {'font-size':'1vw'})],style = {'height': '20vh','width': '46vw','display' : 'inline-block'})]
                     ),
 

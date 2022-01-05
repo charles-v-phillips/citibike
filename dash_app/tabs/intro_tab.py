@@ -9,19 +9,19 @@ intro_tab = dcc.Tab(label = 'Project Introduction',
                     children = [
                     html.H1('Project Description'),
                     html.Div(children = [
-                                html.Div(project_blurb, style = {'width': '48vw'}),
-                                html.Div('dummy', style = {'width' : '48vw'})
+                                html.Div(project_blurb, style = {'width': '48vw','display':'inline-block'}),
+                                html.Div(html.Img(id = 'pic1',
+                            src = cb_photo,
+                            style = {'width': '30vw', 'height': 'auto'}), style = {'vertical-align': 'top','width' : '48vw','display':'inline-block'})
                         ],
                             style = {}),
                     html.H1(),
                     html.H1('Data Description'),
                      html.Div(children = [
-                                html.Div(data_blurb, style = {'width': '48vw'}),
-                                html.Div('dummy', style = {'width' : '48vw'})
+                                html.Div(data_blurb, style = {'width': '48vw','display':'inline-block'}),
+                                html.Div('YOU CHANGING', style = {'vertical-align': 'top','width' : '48vw','display':'inline-block'})
                         ],
-                            style = {}),
-                    html.Img(id = 'pic1',
-                            src = cb_photo,
-                            style = {'width': 500, 'height': 'auto'})
+                            style = {})
+                    
                     ])
 
