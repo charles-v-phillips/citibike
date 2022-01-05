@@ -1,8 +1,7 @@
 from dash import dcc, html
 import pydeck as pdk
 import dash_deck
-import requests
-from secrets import mapbox_key
+from secret import mapbox_key
 import pandas as pd
 from blurbs.rebalancing_strategy_blurbs import logistics_blurb, ml_blurb, algorithm_blurb
 from PIL import Image

@@ -13,7 +13,7 @@ import layout
 from geopy.distance import distance
 import pydeck as pdk
 import dash_deck
-from secrets import mapbox_key
+from secret import mapbox_key
 predictions = pd.read_csv('./data/robert/dataframe_for_live_predictions.csv')
 new = pd.read_csv('./data/robert/new.csv')
 day_of_week_conversion = {0:2, 1:3, 2:4, 3:5, 4:6, 5:7, 6:1}
@@ -25,8 +25,7 @@ def manhattan_distance(start_lat, start_lon, end_lat, end_lon):
 #-------------------- DATA ------------------------------
 
 
-rollout_data = pd.read_csv('./data/rollout_clusters2.csv')
-rollout_data['rollout_cluster'] = rollout_data['rollout_cluster'].astype(str)
+rollout_data = pd.read_parquet('./data/rollout_clusters.parquet')
 
 
 #-------------------- LAYOUT ------------------------------
@@ -34,6 +33,7 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__,external_stylesheets=external_stylesheets)
 
 app.layout = layout.layout
+server = app.server
 
 
 # ------------------- CALLBACKS ------------------------------
@@ -96,7 +96,7 @@ def render_map(date_input, max_bikes_input, min_cargo_size, max_distance, low_av
 
     data_low = query[query['avail_bikes_proportion'] <= low_bike_threshold]
     data_high = query[query['avail_bikes_proportion'] >= high_bike_threshold]
-
+#getting iloc warnings here
     data_low['deficit'] = round((low_bike_threshold - data_low['avail_bikes_proportion']) * data_low['tot_docks']).astype('int')
     data_high['surplus'] = round((data_high['avail_bikes_proportion'] - high_bike_threshold) * data_high['tot_docks']).astype('int')
 
