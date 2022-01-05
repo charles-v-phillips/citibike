@@ -92,7 +92,7 @@ rebalancing_times = Image.open('./data/robert/phantom_rides_time_of_day.png')
 rebalancing_distances = Image.open('./data/robert/phantom_rides_distances.png')
 
 TOOLTIP_TEXT = {"html": "{count} bikes moved from {end_station}<br />\
-                # to {next_station}"}
+                 to {next_station}"}
 
 
 rebalancing_tab =\
